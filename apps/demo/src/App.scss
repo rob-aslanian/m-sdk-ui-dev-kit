@@ -71,7 +71,8 @@
   &__form-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 3rem;
+    flex-wrap: wrap;
 
     &--baseline {
       align-items: baseline;
