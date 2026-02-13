@@ -5,7 +5,7 @@ import { Popover, PopoverAnchor, PopoverContent } from '../popover'
 import { cn } from '../../utils'
 
 // eslint-disable-next-line style/member-delimiter-style -- CI expects comma for this inline type
-export type TagInputOption = string | { value: string, label: string }
+export type TagInputOption = string | { value: string; label: string }
 
 export type TagInputDropdownProps = {
   /** Filtered options to display */
