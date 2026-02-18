@@ -6,7 +6,6 @@
 
 // Styled components
 export * from './components/accordion'
-
 export * from './components/alert-dialog'
 
 export * from './components/area-chart'
@@ -43,6 +42,7 @@ export * from './components/radio'
 export * from './components/select'
 export * as Separator from './components/separator'
 export * from './components/sidebar'
+export * from './components/skeleton'
 export * as Slider from './components/slider'
 export * from './components/spinner'
 export * from './components/switch'
