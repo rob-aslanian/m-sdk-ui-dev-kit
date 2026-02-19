@@ -2,6 +2,7 @@ import { Spinner } from '@mining-sdk/core'
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import App from './App'
+import { ListViewFilterExample } from './examples/list-view-filter-example'
 import { ChartWrapperPage } from './pages'
 
 // Lazy load ALL pages to eliminate unused JavaScript and CSS
@@ -173,6 +174,7 @@ export const router = createBrowserRouter([
       { path: 'typography', element: withSuspense(TypographyExample) },
       { path: 'tags', element: withSuspense(TagsPage) },
       { path: 'indicators', element: withSuspense(IndicatorsExample) },
+      { path: 'list-view-filter', element: withSuspense(ListViewFilterExample) },
       { path: 'icons', element: withSuspense(Icons) },
       { path: 'empty-state', element: withSuspense(EmptyStatePage) },
       { path: 'line-chart', element: withSuspense(LineChartExample) },
