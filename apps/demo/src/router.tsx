@@ -4,6 +4,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from './App'
 import { ListViewFilterExample } from './examples/list-view-filter-example'
 import { ChartWrapperPage } from './pages'
+import { MosaicPageDemo } from './pages/mosaic.page'
 
 // Lazy load ALL pages to eliminate unused JavaScript and CSS
 const HomePage = lazy(() => import('./pages/home-page').then((m) => ({ default: m.HomePage })))
@@ -190,6 +191,7 @@ export const router = createBrowserRouter([
       { path: 'tags', element: withSuspense(TagsPage) },
       { path: 'indicators', element: withSuspense(IndicatorsExample) },
       { path: 'list-view-filter', element: withSuspense(ListViewFilterExample) },
+      { path: 'mosaic', element: withSuspense(MosaicPageDemo) },
       { path: 'mining-icons', element: withSuspense(MiningIconsExample) },
       { path: 'empty-state', element: withSuspense(EmptyStatePage) },
       { path: 'line-chart', element: withSuspense(LineChartExample) },

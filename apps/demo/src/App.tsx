@@ -56,6 +56,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     items: [
       { id: 'table', label: 'Table' },
       { id: 'list-view-filter', label: 'List view filter' },
+      { id: 'mosaic', label: 'Mosaic' },
       { id: 'avatar', label: 'Avatar' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'card', label: 'Card' },
