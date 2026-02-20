@@ -5,6 +5,8 @@ import App from './App'
 import { ListViewFilterExample } from './examples/list-view-filter-example'
 import { ChartWrapperPage } from './pages'
 import { StateExportsPage } from './pages/stats-export-page'
+import { MosaicPageDemo } from './pages/mosaic.page'
+
 
 // Lazy load ALL pages to eliminate unused JavaScript and CSS
 const HomePage = lazy(() => import('./pages/home-page').then((m) => ({ default: m.HomePage })))
@@ -121,6 +123,8 @@ const DemoTable = lazy(() =>
   import('./examples/demo-table').then((module) => ({ default: module.DemoTable })),
 )
 const FormExample = lazy(() => import('./examples/form-example'))
+const FormEnhancedExample = lazy(() => import('./examples/form-enhanced-example'))
+const FormAdvancedExample = lazy(() => import('./examples/form-advanced-example'))
 const IndicatorsExample = lazy(() =>
   import('./examples/indicators-example').then((module) => ({
     default: module.IndicatorsExample,
@@ -139,6 +143,12 @@ const TypographyExample = lazy(() =>
 const MiningIconsExample = lazy(() =>
   import('./examples/mining-icons-example').then((module) => ({
     default: module.MiningIconsExample,
+  })),
+)
+
+const DeviceExplorerPage = lazy(() =>
+  import('./pages/device-explorer-page/device-explorer-page').then((m) => ({
+    default: m.DeviceExplorerPage,
   })),
 )
 
@@ -176,6 +186,8 @@ export const router = createBrowserRouter([
       { path: 'date-pickers', element: withSuspense(DatePickersPage) },
       { path: 'textarea', element: withSuspense(TextAreaExample) },
       { path: 'form', element: withSuspense(FormExample) },
+      { path: 'form-enhanced', element: withSuspense(FormEnhancedExample) },
+      { path: 'form-advanced', element: withSuspense(FormAdvancedExample) },
       { path: 'dialog', element: withSuspense(DialogPage) },
       { path: 'dropdown-menu', element: withSuspense(DropdownMenuPage) },
       { path: 'cascader', element: withSuspense(CascaderExample) },
@@ -191,6 +203,7 @@ export const router = createBrowserRouter([
       { path: 'tags', element: withSuspense(TagsPage) },
       { path: 'indicators', element: withSuspense(IndicatorsExample) },
       { path: 'list-view-filter', element: withSuspense(ListViewFilterExample) },
+      { path: 'mosaic', element: withSuspense(MosaicPageDemo) },
       { path: 'mining-icons', element: withSuspense(MiningIconsExample) },
       { path: 'empty-state', element: withSuspense(EmptyStatePage) },
       { path: 'line-chart', element: withSuspense(LineChartExample) },
@@ -213,6 +226,7 @@ export const router = createBrowserRouter([
       { path: 'active-incidents-card', element: withSuspense(ActiveIncidentsCardPage) },
       { path: 'pool-details-card', element: withSuspense(PoolDetailsCardPage) },
       { path: 'pool-details-popover', element: withSuspense(PoolDetailsPopoverPage) },
+      { path: 'device-explorer', element: withSuspense(DeviceExplorerPage) },
       { path: '*', element: withSuspense(NotFoundPage) },
     ],
   },

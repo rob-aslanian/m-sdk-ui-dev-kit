@@ -1,9 +1,12 @@
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
+import type { TooltipItem } from 'chart.js'
 import * as React from 'react'
 import { Doughnut } from 'react-chartjs-2'
 import { PIE_CHART_COLORS } from '../../constants/colors'
 import { cn } from '../../utils'
 import { colorWithAlpha } from '../../utils/chart-options'
+import { buildChartTooltip } from '../../utils/chart-tooltip'
+import type { ChartTooltipConfig } from '../../utils/chart-tooltip'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -30,6 +33,12 @@ export type DoughnutChartProps = {
   height?: number
   /** Where to place the legend relative to the chart (default: 'top') */
   legendPosition?: DoughnutLegendPosition
+  /**
+   * Custom HTML tooltip configuration. When provided, replaces the default doughnut tooltip
+   *  (which shows label, value with unit, and percentage). Use `valueFormatter` to replicate
+   *  the percentage display if needed.
+   */
+  tooltip?: ChartTooltipConfig
   className?: string
 }
 
@@ -62,6 +71,7 @@ export const DoughnutChart = React.forwardRef<HTMLDivElement, DoughnutChartProps
       borderWidth = 4,
       height = 260,
       legendPosition = 'top',
+      tooltip: tooltipConfig,
       className,
     },
     ref,
@@ -99,25 +109,29 @@ export const DoughnutChart = React.forwardRef<HTMLDivElement, DoughnutChartProps
     )
 
     const mergedOptions = React.useMemo((): ChartJS<'doughnut'>['options'] => {
-      const base: ChartJS<'doughnut'>['options'] = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
+      const tooltipPlugin = tooltipConfig
+        ? buildChartTooltip(tooltipConfig)
+        : {
             backgroundColor: '#17130F',
             titleFont: { size: 10 },
             bodyFont: { size: 12 },
             callbacks: {
               title: () => '',
-              label: (ctx) => {
+              label: (ctx: TooltipItem<'doughnut'>) => {
                 const v = ctx.parsed ?? 0
                 const pct = formatPct(v, total)
                 const suffix = unit ? ` ${unit}` : ''
                 return [`${ctx.label}`, `${v}${suffix} (${pct}%)`]
               },
             },
-          },
+          }
+
+      const base: ChartJS<'doughnut'>['options'] = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: tooltipPlugin,
           datalabels: { display: false },
         },
         elements: { arc: { borderWidth: 0 } },
@@ -127,7 +141,7 @@ export const DoughnutChart = React.forwardRef<HTMLDivElement, DoughnutChartProps
         return { ...base, ...options }
       }
       return base
-    }, [total, unit, options])
+    }, [total, unit, options, tooltipConfig])
 
     const onToggleItem = React.useCallback((index: number) => {
       const chart = chartRef.current

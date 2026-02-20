@@ -9,6 +9,7 @@ import {
   HomeIcon,
   InputIcon,
   LayersIcon,
+  MagnifyingGlassIcon,
 } from '@radix-ui/react-icons'
 import { useRef } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
@@ -33,7 +34,9 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'radio', label: 'Radio' },
       { id: 'date-pickers', label: 'Date Pickers' },
       { id: 'textarea', label: 'TextArea' },
-      { id: 'form', label: 'Form' },
+      { id: 'form', label: 'Form (Basic)' },
+      { id: 'form-enhanced', label: 'Form (Enhanced)' },
+      { id: 'form-advanced', label: 'Form (Advanced)' },
     ],
   },
   {
@@ -56,6 +59,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     items: [
       { id: 'table', label: 'Table' },
       { id: 'list-view-filter', label: 'List view filter' },
+      { id: 'mosaic', label: 'Mosaic' },
       { id: 'avatar', label: 'Avatar' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'card', label: 'Card' },
@@ -121,6 +125,12 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'pool-details-popover', label: 'Pool Details Popover' },
       { id: 'stats-export', label: 'Stats Export Dropdown' },
     ],
+  },
+  {
+    id: 'explorer',
+    label: 'Explorer',
+    icon: <MagnifyingGlassIcon />,
+    items: [{ id: 'device-explorer', label: 'Device Explorer' }],
   },
 ]
 
