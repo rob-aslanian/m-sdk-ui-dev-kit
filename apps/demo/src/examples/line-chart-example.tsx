@@ -1,4 +1,5 @@
 import { ChartContainer, computeStats, LineChart, UNITS } from '@mining-sdk/core'
+import type { ChartTooltipConfig } from '@mining-sdk/core'
 import React, { useCallback, useEffect, useState } from 'react'
 import {
   LINE_CHART_DAILY_REVENUE,
@@ -40,6 +41,10 @@ const generateHashRateData = (range: string): typeof LINE_CHART_HASH_RATE => {
   }
 }
 
+const hashRateTooltip: ChartTooltipConfig = {
+  valueFormatter: (v) => `${v.toFixed(2)} PH/s`,
+}
+
 export const LineChartExample: React.FC = () => {
   const [range, setRange] = useState('5m')
   const [hashRateData, setHashRateData] = useState(() => generateHashRateData('5m'))
@@ -77,7 +82,7 @@ export const LineChartExample: React.FC = () => {
         </ChartContainer>
       </section>
       <section>
-        <h3>Hash Rate style</h3>
+        <h3>With custom tooltip</h3>
         <ChartContainer
           title="Hash Rate"
           footer={
@@ -91,6 +96,7 @@ export const LineChartExample: React.FC = () => {
             height={250}
             formatYLabel={(v) => `${v.toFixed(2)} PH/s`}
             data={LINE_CHART_HASH_RATE}
+            tooltip={hashRateTooltip}
           />
         </ChartContainer>
       </section>
@@ -125,6 +131,7 @@ export const LineChartExample: React.FC = () => {
             showLegend={false}
             formatYLabel={(v) => `${v.toFixed(2)} PH/s`}
             data={hashRateData}
+            tooltip={hashRateTooltip}
           />
         </ChartContainer>
       </section>
@@ -146,6 +153,7 @@ export const LineChartExample: React.FC = () => {
             showPoints
             formatYLabel={(v) => `${v}${UNITS.TEMPERATURE_C}`}
             data={LINE_CHART_TEMPERATURE}
+            tooltip={{ valueFormatter: (v) => `${v}${UNITS.TEMPERATURE_C}` }}
           />
         </ChartContainer>
       </section>
@@ -164,6 +172,7 @@ export const LineChartExample: React.FC = () => {
             height={250}
             formatYLabel={(v) => `$${(v / 1000).toFixed(1)}k`}
             data={LINE_CHART_DAILY_REVENUE}
+            tooltip={{ valueFormatter: (v) => `$${v.toLocaleString()}` }}
           />
         </ChartContainer>
       </section>
