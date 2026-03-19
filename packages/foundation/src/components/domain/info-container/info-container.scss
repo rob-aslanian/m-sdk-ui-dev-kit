@@ -1,0 +1,30 @@
+@use '@mining-sdk/core/styles' as *;
+
+.mining-sdk-device-info {
+  @include flex_column;
+
+  box-sizing: border-box;
+  width: 100%;
+  gap: 5px;
+  padding: 10px;
+}
+
+.mining-sdk-info-container {
+  @include flex_align_between;
+
+  font-size: 12px;
+
+  &__title {
+    font-weight: 600;
+    margin-right: 5px;
+    color: rgb(var(--mining-sdk-color-dark-grey));
+    white-space: nowrap;
+  }
+
+  &__value {
+    @include text_ellipsis;
+
+    max-width: 200px;
+    text-align: right;
+  }
+}
