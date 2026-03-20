@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import './info-container.scss'
 
-type InfoItem = {
+export type InfoItem = {
   title?: string
   value?: string | string[] | number
 }

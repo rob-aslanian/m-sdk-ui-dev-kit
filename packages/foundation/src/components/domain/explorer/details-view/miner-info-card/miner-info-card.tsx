@@ -1,9 +1,9 @@
-import type { InfoContainerProps } from '../../../info-container/info-container'
+import type { InfoItem } from '../../../info-container/info-container'
 import { DeviceInfo } from '../../../info-container/info-container'
 import './miner-info-card.scss'
 
 type MinerInfoCardProps = {
-  data: InfoContainerProps[]
+  data: InfoItem[]
   label: string
 }
 
