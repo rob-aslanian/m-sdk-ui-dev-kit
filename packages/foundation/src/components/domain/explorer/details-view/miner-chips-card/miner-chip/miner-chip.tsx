@@ -23,7 +23,7 @@ export const MinerChip = ({ index, frequency, temperature }: MinerChipProps) => 
     <div className="mining-sdk-miner-chip__minmax">
       <div className="mining-sdk-miner-chip__value">
         {formatNumber(temperature.min)}
-        <p className="mining-sdk-miner-chip__value-type"> min ({UNITS.TEMPERATURE_C}) </p>
+        <p className="mining-sdk-miner-chip__value-type"> min ({UNITS.TEMPERATURE_C})</p>
       </div>
       <div className="mining-sdk-miner-chip__value">
         {formatNumber(temperature.max)}
