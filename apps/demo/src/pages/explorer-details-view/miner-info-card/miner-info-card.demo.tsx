@@ -12,7 +12,7 @@ export const MinerInfoCardDemo = (): ReactElement => {
     <div className="miner-info-card-demo">
       <div className="miner-info-card-demo__header">
         <h1>Miner Info Card Demo</h1>
-        <p>Structured key-value device info display with light and dark variants</p>
+        <p>Structured key-value device info display</p>
       </div>
 
       <div className="miner-info-card-demo__examples">
