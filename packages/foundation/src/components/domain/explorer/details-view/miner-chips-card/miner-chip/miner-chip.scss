@@ -1,33 +1,34 @@
 @use '@mining-sdk/core/styles' as *;
 
 .mining-sdk-miner-chip {
-  @include flex_column;
+  @include flex_column_center;
 
-  width: 85px;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 5px;
+  width: 95px;
   margin: 2px;
-  border: 1px solid var(--mining-sdk-miner-chip-border-color, #ccc);
+  padding: 10px 5px;
+  border: 1px solid rgb(var(--mining-sdk-color-soft-gray));
+  border-radius: 8px;
 
   &__title {
-    color: var(--mining-sdk-miner-chip-title-color, #e8893a);
+    font-size: 14px;
+    color: var(--mining-sdk-color-primary);
     margin: 0 0 5px;
   }
 
   &__property {
-    color: var(--mining-sdk-miner-chip-property-color, #bbb);
+    color: rgb(var(--mining-sdk-color-soft-gray));
     margin: 0 0 4px;
     font-size: 12px;
   }
 
   &__value {
+    color: var(--mining-sdk-color-text-secondary);
     margin-bottom: 8px;
     font-size: 12px;
   }
 
   &__value-type {
+    color: var(--mining-sdk-color-text-secondary);
     font-size: 8px;
     margin: 0;
   }
