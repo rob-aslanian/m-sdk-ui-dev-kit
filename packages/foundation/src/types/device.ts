@@ -88,7 +88,6 @@ export type ContainerStats = {
   distribution_box1_power_w: number
   distribution_box2_power_w: number
   stats: Record<string, unknown>
-  hashrate_mhs: { t_5m: 90000 }
   temperature_c: Partial<StatsTemperatureC>
   frequency_mhz: Partial<StatsFrequencyMhz>
   [key: string]: unknown
