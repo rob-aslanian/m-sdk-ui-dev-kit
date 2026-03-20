@@ -2,21 +2,6 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { MinerInfoCard } from '../miner-info-card'
 
-vi.mock('@mining-sdk/core', () => ({
-  cn: (...args: unknown[]) =>
-    args
-      .flatMap((a) =>
-        typeof a === 'string'
-          ? a
-          : typeof a === 'object' && a !== null
-            ? Object.entries(a)
-                .filter(([, v]) => Boolean(v))
-                .map(([k]) => k)
-            : [],
-      )
-      .join(' '),
-}))
-
 vi.mock('../../../../info-container/info-container', () => ({
   DeviceInfo: vi.fn(({ data }) => <div data-testid="device-info">{JSON.stringify(data)}</div>),
 }))
@@ -53,26 +38,6 @@ describe('MinerInfoCard', () => {
       render(<MinerInfoCard label="Device details" />)
 
       expect(screen.getByText('Device details')).toBeInTheDocument()
-    })
-  })
-
-  describe('dark mode', () => {
-    it('does not apply dark class by default', () => {
-      const { container } = render(<MinerInfoCard />)
-
-      expect(container.querySelector('.mining-sdk-miner-info-card--dark')).not.toBeInTheDocument()
-    })
-
-    it('applies dark class when isDark is true', () => {
-      const { container } = render(<MinerInfoCard isDark />)
-
-      expect(container.querySelector('.mining-sdk-miner-info-card--dark')).toBeInTheDocument()
-    })
-
-    it('does not apply dark class when isDark is false', () => {
-      const { container } = render(<MinerInfoCard isDark={false} />)
-
-      expect(container.querySelector('.mining-sdk-miner-info-card--dark')).not.toBeInTheDocument()
     })
   })
 

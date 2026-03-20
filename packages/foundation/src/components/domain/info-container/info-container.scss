@@ -24,6 +24,7 @@
   &__value {
     @include text_ellipsis;
 
+    color: var(--mining-sdk-color-text-secondary);
     max-width: 200px;
     text-align: right;
   }

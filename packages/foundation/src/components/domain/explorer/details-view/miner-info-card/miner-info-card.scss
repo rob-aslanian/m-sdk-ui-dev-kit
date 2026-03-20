@@ -3,18 +3,17 @@
 .mining-sdk-miner-info-card {
   @include flex_column;
 
+  font-family: var(--font-mono);
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid var(--mining-sdk-border-default-color);
+  border: 1px solid var(--mining-sdk-color-white-transparent);
   overflow: auto;
 
-  &--dark {
-    background-color: var(--mining-sdk-color-dark);
-  }
-
   &__label {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 16px;
+    color: var(--mining-sdk-color-white);
+    text-transform: uppercase;
+    font-weight: 400;
     padding: 8px 10px;
   }
 }

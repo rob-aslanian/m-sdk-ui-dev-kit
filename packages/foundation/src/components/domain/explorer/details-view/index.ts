@@ -1,3 +1,4 @@
+export * from './miner-info-card/miner-info-card'
 export * from './miner-metric-card/miner-metric-card'
 export * from './secondary-stat-card/secondary-stat-card'
 export * from './single-stat-card/single-stat-card'

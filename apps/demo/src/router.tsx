@@ -8,6 +8,7 @@ import { BitdeerPage } from './pages/explorer-containers/bitdeer/bitdeer-page'
 import { BitmainImmersionPage } from './pages/explorer-containers/bitmain-immersion/bitmain-immersion-page'
 import BitmainPage from './pages/explorer-containers/bitmain/bitmain-page'
 import { MicroBTPage } from './pages/explorer-containers/micro-bt/micro-bt-page'
+import { MinerInfoCardDemo } from './pages/explorer-details-view/miner-info-card/miner-info-card.demo'
 import { SecondaryStatCardDemo } from './pages/explorer-details-view/secondary-stat-card/secondary-stat-card-demo'
 import { SingleStatCardDemo } from './pages/explorer-details-view/single-stat-card/single-stat-card-demo'
 import { StatsGroupCardDemo } from './pages/explorer-details-view/stats-group-card/stats-group-card-demo'
@@ -274,6 +275,7 @@ export const router = createBrowserRouter(
         { path: 'secondary-stat-card', element: withSuspense(SecondaryStatCardDemo) },
         { path: 'single-stat-card', element: withSuspense(SingleStatCardDemo) },
         { path: 'stats-group-card', element: withSuspense(StatsGroupCardDemo) },
+        { path: 'miner-info-card', element: withSuspense(MinerInfoCardDemo) },
         { path: '*', element: withSuspense(NotFoundPage) },
       ],
     },
