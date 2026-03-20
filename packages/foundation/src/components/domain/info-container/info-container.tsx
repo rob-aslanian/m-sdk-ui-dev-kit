@@ -1,16 +1,12 @@
 import type { ReactNode } from 'react'
 import './info-container.scss'
 
-// ---------------------------------------------------------------------------
-// InfoContainer
-// ---------------------------------------------------------------------------
-
-export type InfoContainerProps = {
+type InfoItem = {
   title?: string
   value?: string | string[] | number
 }
 
-export const InfoContainer = ({ title, value }: InfoContainerProps): ReactNode => {
+export const InfoContainer = ({ title, value }: InfoItem): ReactNode => {
   const items: (string | number | undefined)[] = Array.isArray(value) ? value : [value]
 
   return (
@@ -25,18 +21,8 @@ export const InfoContainer = ({ title, value }: InfoContainerProps): ReactNode =
   )
 }
 
-// ---------------------------------------------------------------------------
-// DeviceInfo
-// ---------------------------------------------------------------------------
-
-type InfoItemForContainer = {
-  title?: string
-  value?: string | string[] | number
-  [key: string]: unknown
-}
-
 type DeviceInfoProps = {
-  data?: InfoItemForContainer[]
+  data: InfoItem[]
 }
 
 const normalizeValue = (
@@ -49,11 +35,11 @@ const normalizeValue = (
   return String(value)
 }
 
-export const DeviceInfo = ({ data }: DeviceInfoProps): ReactNode => (
+export const DeviceInfo = ({ data }: Partial<DeviceInfoProps>): ReactNode => (
   <div className="mining-sdk-device-info">
     {data?.map((item, index) => (
       <InfoContainer
-        key={index}
+        key={`${item.title}-${index}`}
         title={item.title !== undefined ? String(item.title) : undefined}
         value={normalizeValue(item.value)}
       />
