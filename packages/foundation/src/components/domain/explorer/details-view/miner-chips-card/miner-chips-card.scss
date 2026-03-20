@@ -1,0 +1,27 @@
+// miner-chips-card.scss
+@import 'mixins';
+
+.mining-sdk-miner-chips-card {
+  @include flex_column;
+
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid var(--mining-sdk-miner-chips-card-border-color, #e0e0e0);
+
+  &__label {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--mining-sdk-miner-chips-card-border-color, #e0e0e0);
+  }
+
+  &__chips {
+    @include flex_row;
+
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+  }
+}

@@ -53,6 +53,32 @@ export type ContainerInfo = {
   return_liquid_pressure: number
 }
 
+export type ChipData = {
+  index: number
+  current: number
+}
+
+export type TempChipData = {
+  index: number
+  max?: number
+  min?: number
+  avg?: number
+}
+
+export type StatsTemperatureC = {
+  avg: number
+  min: number
+  max: number
+  chips: TempChipData[]
+  [key: string]: unknown
+}
+
+export type StatsFrequencyMhz = {
+  avg: number
+  chips: ChipData[]
+  [key: string]: unknown
+}
+
 export type ContainerStats = {
   status: string
   ambient_temp_c: number
@@ -62,6 +88,9 @@ export type ContainerStats = {
   distribution_box1_power_w: number
   distribution_box2_power_w: number
   stats: Record<string, unknown>
+  hashrate_mhs: { t_5m: 90000 }
+  temperature_c: Partial<StatsTemperatureC>
+  frequency_mhz: Partial<StatsFrequencyMhz>
   [key: string]: unknown
 }
 
