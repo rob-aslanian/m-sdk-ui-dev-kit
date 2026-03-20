@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { BitdeerTankPressureCharts, BitdeerTankTempCharts } from '@mining-sdk/foundation'
 import './bitdeer-charts-demo.scss'
 
+const CHART_HEIGHT = 300
 /**
  * Bitdeer Charts Demo Component
  *
@@ -162,7 +163,7 @@ export const BitdeerChartsDemo = (): ReactElement => {
               chartTitle="Tank Pressure"
               data={currentScenario.data}
               timeline={timeline}
-              height={400}
+              height={CHART_HEIGHT}
             />
           </div>
         </div>
@@ -175,7 +176,7 @@ export const BitdeerChartsDemo = (): ReactElement => {
               tankNumber={1}
               data={currentScenario.data}
               timeline={timeline}
-              height={400}
+              height={CHART_HEIGHT}
             />
           </div>
         </div>
@@ -188,7 +189,7 @@ export const BitdeerChartsDemo = (): ReactElement => {
               tankNumber={2}
               data={currentScenario.data}
               timeline={timeline}
-              height={400}
+              height={CHART_HEIGHT}
             />
           </div>
         </div>

@@ -35,9 +35,9 @@ export const BitdeerSettingsPage = (): ReactElement => {
       },
       tankPressure: {
         criticalLow: 2.0,
-        alert: 2.2,
+        alarmLow: 2.2,
         normal: 2.3,
-        alarm: 2.4,
+        alarmHigh: 2.4,
         criticalHigh: 2.5,
       },
     },

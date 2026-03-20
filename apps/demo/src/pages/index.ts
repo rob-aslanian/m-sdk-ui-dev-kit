@@ -1,5 +1,6 @@
 export { ActiveIncidentsCardPage } from './active-incidents-card-page'
 export { AvatarPage } from './avatar-page'
+export { BitMainImmersionSummaryBoxPage } from './bitmain-immersion-summary-box-page'
 export { BreadcrumbsPage } from './breadcrumbs-page'
 export { ButtonsPage } from './buttons-page'
 export { CardPage } from './card-page'

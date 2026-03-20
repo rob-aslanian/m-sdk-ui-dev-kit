@@ -1,7 +1,7 @@
 .mining-sdk-chart-container {
   min-width: 0;
   width: 100%;
-  
+
   &--grid {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -36,12 +36,14 @@
 
   &__legend {
     @include flex_wrap;
+
     gap: 0.5rem 1rem;
     align-items: center;
   }
 
   &__legend-item {
     @include flex_align;
+
     gap: 0.5rem;
     background: none;
     border: none;
@@ -51,14 +53,15 @@
   }
 
   &__legend-box {
-    width: 10px;
-    height: 10px;
+    width: 14px;
+    height: 14px;
     border: 1px solid;
     flex-shrink: 0;
   }
 
   &__legend-label {
-    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 14px;
     color: var(--mining-sdk-chart-container-legend-label);
   }
 
@@ -74,66 +77,35 @@
 
   &__header-right {
     @include flex_align;
+
     flex-shrink: 0;
   }
 
   &__title {
     margin: 0;
-    font-size: 0.875rem;
+    font-size: 17px;
     font-weight: 500;
     color: var(--mining-sdk-chart-container-title);
-  }
-
-  &__range-selector {
-    @include flex_align;
-    gap: 0;
-    border-radius: 0;
-    overflow: hidden;
-    border: 1px solid hsl(var(--foreground) / 0.2);
-  }
-
-  &__range-btn {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: hsl(var(--foreground) / 0.8);
-    background: transparent;
-    border: none;
-    border-right: 1px solid hsl(var(--foreground) / 0.2);
-    cursor: pointer;
-    transition: background-color 0.15s, color 0.15s;
-
-    &:last-child {
-      border-right: none;
-    }
-
-    &:hover {
-      background: hsl(var(--foreground) / 0.08);
-      color: hsl(var(--foreground));
-    }
-
-    &--active {
-      background: hsl(var(--foreground) / 0.12);
-      color: hsl(var(--foreground));
-    }
+    margin-bottom: 20px;
   }
 
   &__highlighted-value {
     @include flex_align;
+
     align-items: baseline;
     gap: 0.25rem;
   }
 
   &__highlighted-value__number {
-    font-size: 1.25rem;
+    font-size: 28px;
     font-weight: 600;
     color: var(--mining-sdk-color-primary);
   }
 
   &__highlighted-value__unit {
-    font-size: 0.75rem;
+    font-size: 16px;
     font-weight: 500;
-    color: hsl(var(--foreground) / 0.8);
+    color: var(--mining-sdk-color-white-5);
   }
 
   &__body {
@@ -142,6 +114,7 @@
 
     &--with-highlight {
       @include flex_align_start;
+
       gap: 1rem;
     }
   }
@@ -161,15 +134,17 @@
 
   &__empty {
     @include flex_center;
+
     min-height: 200px;
     color: hsl(var(--foreground) / 0.6);
   }
 
   &__loading-overlay {
+    @include flex_center;
+
     position: absolute;
     inset: 0;
     z-index: 2;
-    @include flex_center;
     background: transparent;
     pointer-events: none;
   }

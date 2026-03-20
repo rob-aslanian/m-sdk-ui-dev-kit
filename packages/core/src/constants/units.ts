@@ -18,6 +18,7 @@ export const UNITS = {
   HASHRATE_PH_S: 'PH/s',
   HASHRATE_EH_S: 'EH/s',
   HASHRATE_MH_S: 'MH/s',
+  FREQUENCY_MHZ: 'MHz',
   FREQUENCY_HERTZ: 'Hz',
   HUMIDITY_PERCENT: '%RH',
   APPARENT_POWER_KVA: 'kVA',

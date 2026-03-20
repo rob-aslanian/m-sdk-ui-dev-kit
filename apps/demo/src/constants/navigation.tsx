@@ -25,6 +25,7 @@ export const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'action-button', label: 'Action Button' },
       { id: 'buttons', label: 'Buttons' },
       { id: 'form-elements', label: 'Form Elements' },
+      { id: 'input', label: 'Input' },
       { id: 'select', label: 'Select' },
       { id: 'checkbox-switch', label: 'Checkbox & Switch' },
       { id: 'radio', label: 'Radio' },
@@ -125,6 +126,10 @@ export const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'widget-top-row', label: 'Widget Top Row' },
       { id: 'logs-card', label: 'Logs Card' },
       { id: 'tanks-box', label: 'Tanks Box' },
+      {
+        id: 'bitmain-immersion-summary-box',
+        label: 'Bitmain Immersion Summary Box',
+      },
     ],
   },
   {
@@ -149,6 +154,7 @@ export const COMPONENT_NAV: SidebarMenuItem[] = [
         items: [
           { id: 'single-stat-card', label: 'Single Stat Card' },
           { id: 'secondary-stat-card', label: 'Secondary Stat Card' },
+          { id: 'stats-group-card', label: 'Stats group card' },
         ],
       },
     ],

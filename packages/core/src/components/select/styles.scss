@@ -38,9 +38,7 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px hsl(var(--ring));
-    outline: 2px solid transparent;
-    outline-offset: 2px;
+    box-shadow: none;
   }
 
   &[data-placeholder] {
@@ -68,9 +66,10 @@
 
 .mining-sdk-select__content {
   overflow: hidden;
-  background-color: var(--mining-sdk-select-content-bg, #1a1a1a);
+  background-color: var(--mining-sdk-color-background-dark);
   color: var(--mining-sdk-popover-text, #ffffff);
-  border: 1px solid var(--mining-sdk-popover-border, #ffffff1a);
+  border: 1px solid var(--mining-sdk-color-white-2);
+  border-radius: 0;
   box-shadow: var(--mining-sdk-shadow-md);
   z-index: 10000;
 }
@@ -86,21 +85,34 @@
   @include flex_align;
 
   position: relative;
-  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  padding: 8px 16px;
+  padding-right: 2rem;
+  font-family: var(--font-mono);
   font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
   outline: none;
   cursor: pointer;
   user-select: none;
-  border-radius: 4px;
-  color: var(--mining-sdk-select-item-text, #e1e0e0);
+  border-radius: 0;
+  color: var(--mining-sdk-color-white-7);
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 
   &:not(:last-child) {
-    border-bottom: 1px solid var(--mining-sdk-button-secondary-border);
+    border-bottom: 1px solid var(--mining-sdk-color-white-transparent);
   }
 
   &[data-highlighted] {
-    background-color: var(--mining-sdk-color-primary, #f7931a);
-    color: var(--mining-sdk-select-item-highlighted-text, #1a1a1a);
+    background-color: var(--mining-sdk-color-white-4);
+    color: var(--mining-sdk-color-white-7);
+  }
+
+  &[data-state='checked'] {
+    background-color: var(--mining-sdk-color-primary-10);
+    color: var(--mining-sdk-color-primary);
   }
 
   &[data-disabled] {
@@ -114,7 +126,7 @@
 
   position: absolute;
   right: 0.75rem;
-  color: var(--mining-sdk-select-item-highlighted-text, #1a1a1a);
+  color: var(--mining-sdk-color-primary);
 }
 
 .mining-sdk-select__label {

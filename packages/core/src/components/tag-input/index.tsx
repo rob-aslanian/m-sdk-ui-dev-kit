@@ -1,16 +1,19 @@
-import {
-  CheckIcon,
-  ChevronDownIcon,
-  Cross1Icon,
-  Cross2Icon,
-  MagnifyingGlassIcon,
-} from '@radix-ui/react-icons'
+import { CheckIcon, ChevronDownIcon, Cross1Icon } from '@radix-ui/react-icons'
 import * as React from 'react'
 
 import { cn } from '../../utils'
 import { Popover, PopoverAnchor, PopoverContent } from '../popover'
 
-export type TagInputOption = string | { value: string; label: string }
+const CloseIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 8 8" fill="none">
+    <path
+      d="M7.28145 1.28145C7.57441 0.988477 7.57441 0.512695 7.28145 0.219727C6.98848 -0.0732422 6.5127 -0.0732422 6.21973 0.219727L3.75176 2.69004L1.28145 0.22207C0.988477 -0.0708985 0.512695 -0.0708985 0.219727 0.22207C-0.0732422 0.515039 -0.0732422 0.99082 0.219727 1.28379L2.69004 3.75176L0.22207 6.22207C-0.0708984 6.51504 -0.0708984 6.99082 0.22207 7.28379C0.515039 7.57676 0.99082 7.57676 1.28379 7.28379L3.75176 4.81348L6.22207 7.28145C6.51504 7.57441 6.99082 7.57441 7.28379 7.28145C7.57676 6.98848 7.57676 6.5127 7.28379 6.21973L4.81348 3.75176L7.28145 1.28145Z"
+      fill="currentColor"
+    />
+  </svg>
+)
+
+export type TagInputOption = string | { value: string; label: string; disabled?: boolean }
 
 export type TagInputRef = {
   /** Clear the input value programmatically */
@@ -46,6 +49,8 @@ export type TagInputDropdownProps = {
   getOptionValue: (opt: TagInputOption) => string
   /** Helper to get option label from TagInputOption */
   getOptionLabel: (opt: TagInputOption) => string
+  /** Helper to check if option is disabled */
+  isOptionDisabled: (opt: TagInputOption) => boolean
 }
 
 export type TagInputProps = {
@@ -129,6 +134,9 @@ const getOptionValue = (opt: TagInputOption): string => (typeof opt === 'string'
 
 const getOptionLabel = (opt: TagInputOption): string => (typeof opt === 'string' ? opt : opt.label)
 
+const isOptionDisabled = (opt: TagInputOption): boolean =>
+  typeof opt === 'object' && opt.disabled === true
+
 const defaultFilter = (options: TagInputOption[], query: string): TagInputOption[] => {
   if (!query.trim()) return options
   const q = query.toLowerCase()
@@ -189,6 +197,23 @@ const getLabelFromTag = (tag: string, options: TagInputOption[]): string => {
  * />
  * ```
  */
+
+const SearchIcon = ({ className }: { className?: string }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" fill="none">
+    <g clipPath="url(#search-icon-clip)">
+      <path
+        d="M11.375 5.6875C11.375 6.94258 10.9676 8.10195 10.2812 9.04258L13.743 12.507C14.0848 12.8488 14.0848 13.4039 13.743 13.7457C13.4012 14.0875 12.8461 14.0875 12.5043 13.7457L9.04258 10.2812C8.10195 10.9703 6.94258 11.375 5.6875 11.375C2.5457 11.375 0 8.8293 0 5.6875C0 2.5457 2.5457 0 5.6875 0C8.8293 0 11.375 2.5457 11.375 5.6875ZM5.6875 9.625C6.20458 9.625 6.7166 9.52315 7.19432 9.32528C7.67204 9.1274 8.1061 8.83736 8.47173 8.47173C8.83736 8.1061 9.1274 7.67204 9.32528 7.19432C9.52315 6.7166 9.625 6.20458 9.625 5.6875C9.625 5.17042 9.52315 4.6584 9.32528 4.18068C9.1274 3.70296 8.83736 3.2689 8.47173 2.90327C8.1061 2.53764 7.67204 2.2476 7.19432 2.04972C6.7166 1.85185 6.20458 1.75 5.6875 1.75C5.17042 1.75 4.6584 1.85185 4.18068 2.04972C3.70296 2.2476 3.2689 2.53764 2.90327 2.90327C2.53764 3.2689 2.2476 3.70296 2.04972 4.18068C1.85185 4.6584 1.75 5.17042 1.75 5.6875C1.75 6.20458 1.85185 6.7166 2.04972 7.19432C2.2476 7.67204 2.53764 8.1061 2.90327 8.47173C3.2689 8.83736 3.70296 9.1274 4.18068 9.32528C4.6584 9.52315 5.17042 9.625 5.6875 9.625Z"
+        fill="currentColor"
+      />
+    </g>
+    <defs>
+      <clipPath id="search-icon-clip">
+        <path d="M0 0H14V14H0V0Z" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+)
+
 const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>(
   (
     {
@@ -215,7 +240,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
     const id = idProp ?? React.useId()
     const [open, setOpen] = React.useState(false)
     const [inputValue, setInputValue] = React.useState('')
-    const [highlightedIndex, setHighlightedIndex] = React.useState(0)
+    const [highlightedIndex, setHighlightedIndex] = React.useState(-1)
     const inputRef = React.useRef<HTMLInputElement>(null)
     const listRef = React.useRef<HTMLDivElement>(null)
     const wrapperRef = React.useRef<HTMLDivElement>(null)
@@ -236,7 +261,6 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
         if (!trimmed || tags.includes(trimmed)) return false
         setTags([...tags, trimmed])
         setInputValue('')
-        setHighlightedIndex(0)
         return true
       },
       [tags, setTags],
@@ -252,7 +276,6 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
 
     const clearInputValue = React.useCallback(() => {
       setInputValue('')
-      setHighlightedIndex(0)
     }, [])
 
     React.useImperativeHandle(
@@ -423,7 +446,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
                         aria-label={`Remove ${tag}`}
                         tabIndex={-1}
                       >
-                        <Cross2Icon />
+                        <CloseIcon />
                       </button>
                     </span>
                   </span>
@@ -440,7 +463,6 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
                   value={inputValue}
                   onChange={(e) => {
                     setInputValue(e.target.value)
-                    setHighlightedIndex(0)
                     onInputChange?.(e.target.value)
                   }}
                   onKeyDown={handleKeyDown}
@@ -469,7 +491,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
                 data-has-tags={tags.length > 0}
                 onClick={removeAllTags}
               >
-                <MagnifyingGlassIcon className="mining-sdk-tag-input__icon--glass" />
+                <SearchIcon className="mining-sdk-tag-input__icon--glass" />
                 <Cross1Icon className="mining-sdk-tag-input__icon--cross" />
               </span>
             ) : (
@@ -511,6 +533,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
               getOptionId: (i) => `${id}-option-${i}`,
               getOptionValue,
               getOptionLabel,
+              isOptionDisabled,
             })
           ) : (
             <div
@@ -524,22 +547,25 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
               ) : (
                 filteredOptions.map((opt, i) => {
                   const isSelected = tags.includes(getOptionValue(opt))
+                  const disabled = isOptionDisabled(opt)
                   return (
                     <div
                       key={getOptionValue(opt)}
                       id={`${id}-option-${i}`}
                       role="option"
                       aria-selected={i === highlightedIndex}
+                      aria-disabled={disabled}
                       className={cn(
                         'mining-sdk-tag-input__option',
                         i === highlightedIndex && 'mining-sdk-tag-input__option--highlighted',
                         isSelected && 'mining-sdk-tag-input__option--selected',
+                        disabled && 'mining-sdk-tag-input__option--disabled',
                       )}
                       onMouseDown={(e) => {
                         e.preventDefault()
-                        handleOptionSelect(opt)
+                        if (!disabled) handleOptionSelect(opt)
                       }}
-                      onMouseEnter={() => setHighlightedIndex(i)}
+                      onMouseEnter={() => !disabled && setHighlightedIndex(i)}
                     >
                       <span className="mining-sdk-tag-input__option-label">
                         {getOptionLabel(opt)}

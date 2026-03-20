@@ -8,6 +8,7 @@
 export * from './active-incidents-card'
 export * from './chart-wrapper'
 export * from './container-charts-builder'
+export * from './container/bitmain-immersion-summary-box'
 export * from './container/tanks-box'
 export * from './device-explorer'
 export * from './explorer/containers/bitdeer'

@@ -27,11 +27,13 @@ export function TableHeader<I = unknown>({ table }: TableHeaderProps<I>): JSX.El
         onClick={header.column.getToggleSortingHandler()}
       >
         <div className="mining-sdk-table-header-content">
-          {flexRender(header.column.columnDef.header, header.getContext())}
-          {{
-            asc: <TriangleUpIcon height={SORT_ICON_SIZE} width={SORT_ICON_SIZE} />,
-            desc: <TriangleDownIcon height={SORT_ICON_SIZE} width={SORT_ICON_SIZE} />,
-          }[header.column.getIsSorted() as string] ?? null}
+          <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
+          <span style={{ width: SORT_ICON_SIZE }}>
+            {{
+              asc: <TriangleUpIcon height={SORT_ICON_SIZE} width={SORT_ICON_SIZE} />,
+              desc: <TriangleDownIcon height={SORT_ICON_SIZE} width={SORT_ICON_SIZE} />,
+            }[header.column.getIsSorted() as string] ?? null}
+          </span>
         </div>
       </th>
     )

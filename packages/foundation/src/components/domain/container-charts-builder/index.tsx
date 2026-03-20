@@ -219,7 +219,6 @@ const ContainerChartsBuilder = ({
         roundPrecision={chartDataPayload.valueDecimals}
         timeline={selectedTimeline}
         fixedTimezone={fixedTimezone}
-        unit={chartDataPayload.unit}
       />
     </ChartContainer>
   )

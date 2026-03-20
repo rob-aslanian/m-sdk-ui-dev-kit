@@ -1,5 +1,6 @@
 export type DeviceLast = {
   err?: string | null
+  type?: string
   snap?: Partial<ContainerSnap>
   alerts?: unknown[] | null
   [key: string]: unknown
@@ -21,6 +22,21 @@ export type Device = {
   info?: DeviceInfo
   containerId?: string
   address?: string | null
+  [key: string]: unknown
+}
+
+export type DeviceData = {
+  id: string
+  type: string
+  tags?: string[]
+  rack?: string
+  snap: ContainerSnap
+  alerts?: unknown[]
+  username?: string
+  info?: DeviceInfo
+  containerId?: string
+  address?: string
+  err?: string
   [key: string]: unknown
 }
 

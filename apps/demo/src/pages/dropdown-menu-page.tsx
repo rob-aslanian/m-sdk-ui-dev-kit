@@ -1,107 +1,177 @@
-import { Button, DropdownMenu } from '@mining-sdk/core'
+import {
+  AlertsNavIcon,
+  DashboardNavIcon,
+  DropdownMenu,
+  SettingsNavIcon,
+  UserAvatarIcon,
+} from '@mining-sdk/core'
+
+const SEARCH_ITEMS_SM = [
+  { label: 'Option 1' },
+  { label: 'Option 2', disabled: true },
+  { label: 'Option 3' },
+  { label: 'Option 4', active: true },
+]
+const SEARCH_ITEMS_MD = [
+  { label: 'Dashboard' },
+  { label: 'Analytics', disabled: true },
+  { label: 'Reports' },
+  { label: 'Settings', active: true },
+]
+const SEARCH_ITEMS_LG = [
+  { label: 'Dashboard' },
+  { label: 'Analytics', disabled: true },
+  { label: 'Reports' },
+  { label: 'Settings', active: true },
+]
 
 export const DropdownMenuPage = (): JSX.Element => {
   return (
     <section className="demo-section">
-      <h2 className="demo-section__title">Dropdown Menu</h2>
+      <h2 className="demo-section__title">Dropdown</h2>
+
+      <h3 style={{ marginBottom: '1rem' }}>Basic</h3>
       <div className="demo-section__select-grid">
         <section>
-          <h3>Basic</h3>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger asChild>
-              <Button variant="secondary">Open menu</Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content>
-              <DropdownMenu.Item onClick={() => {}}>Move Miner</DropdownMenu.Item>
-              <DropdownMenu.Item onClick={() => {}}>Repair</DropdownMenu.Item>
-              <DropdownMenu.Item onClick={() => {}}>Inventory Logs</DropdownMenu.Item>
-              <DropdownMenu.Item onClick={() => {}}>Add Comment</DropdownMenu.Item>
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
+          <h3>Small - Basic</h3>
+          <DropdownMenu.StaticContent size="sm">
+            <DropdownMenu.StaticItem>Item 1</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem disabled>Item 2</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem>Item 3</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem active>Item 4</DropdownMenu.StaticItem>
+          </DropdownMenu.StaticContent>
         </section>
+
         <section>
-          <h3>With shortcuts</h3>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger asChild>
-              <Button variant="secondary">Actions</Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content alignWidth>
-              <DropdownMenu.Item onClick={() => {}}>
-                Copy <DropdownMenu.Shortcut>⌘C</DropdownMenu.Shortcut>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item onClick={() => {}}>
-                Paste <DropdownMenu.Shortcut>⌘V</DropdownMenu.Shortcut>
-              </DropdownMenu.Item>
-              <DropdownMenu.Separator />
-              <DropdownMenu.Item onClick={() => {}}>
-                Delete <DropdownMenu.Shortcut>⌫</DropdownMenu.Shortcut>
-              </DropdownMenu.Item>
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
+          <h3>Medium - Basic</h3>
+          <DropdownMenu.StaticContent size="md">
+            <DropdownMenu.StaticItem>Item 1</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem disabled>Item 2</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem>Item 3</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem active>Item 4</DropdownMenu.StaticItem>
+          </DropdownMenu.StaticContent>
         </section>
+
         <section>
-          <h3>With label and separator</h3>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger asChild>
-              <Button variant="secondary">Miner actions</Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content>
-              <DropdownMenu.Label>Primary</DropdownMenu.Label>
-              <DropdownMenu.Item onClick={() => {}}>Move Miner</DropdownMenu.Item>
-              <DropdownMenu.Item onClick={() => {}}>Repair</DropdownMenu.Item>
-              <DropdownMenu.Item onClick={() => {}}>Add Comment</DropdownMenu.Item>
-              <DropdownMenu.Separator />
-              <DropdownMenu.Label>Danger Zone</DropdownMenu.Label>
-              <DropdownMenu.Item onClick={() => {}}>Delete Miner</DropdownMenu.Item>
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
+          <h3>Large - Basic</h3>
+          <DropdownMenu.StaticContent size="lg">
+            <DropdownMenu.StaticItem>Item 1</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem disabled>Item 2</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem>Item 3</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem active>Item 4</DropdownMenu.StaticItem>
+          </DropdownMenu.StaticContent>
         </section>
+      </div>
+
+      <h3 style={{ marginTop: '2rem', marginBottom: '1rem' }}>With Icons</h3>
+      <div className="demo-section__select-grid">
         <section>
-          <h3>With submenu</h3>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger asChild>
-              <Button variant="secondary">Export</Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content>
-              <DropdownMenu.Item onClick={() => {}}>Export CSV</DropdownMenu.Item>
-              <DropdownMenu.Sub>
-                <DropdownMenu.SubTrigger>Export formats</DropdownMenu.SubTrigger>
-                <DropdownMenu.SubContent>
-                  <DropdownMenu.Item onClick={() => {}}>PDF</DropdownMenu.Item>
-                  <DropdownMenu.Item onClick={() => {}}>Excel</DropdownMenu.Item>
-                  <DropdownMenu.Item onClick={() => {}}>JSON</DropdownMenu.Item>
-                </DropdownMenu.SubContent>
-              </DropdownMenu.Sub>
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
+          <h3>Small - With Icons</h3>
+          <DropdownMenu.StaticContent size="sm">
+            <DropdownMenu.StaticItem icon={<DashboardNavIcon />}>Home</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem icon={<SettingsNavIcon />} disabled>
+              Files
+            </DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem icon={<AlertsNavIcon />}>Settings</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem icon={<UserAvatarIcon />} active>
+              Profile
+            </DropdownMenu.StaticItem>
+          </DropdownMenu.StaticContent>
         </section>
+
         <section>
-          <h3>Above trigger</h3>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger asChild>
-              <Button variant="secondary">Open above</Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content side="top">
-              <DropdownMenu.Item onClick={() => {}}>Option A</DropdownMenu.Item>
-              <DropdownMenu.Item onClick={() => {}}>Option B</DropdownMenu.Item>
-              <DropdownMenu.Item onClick={() => {}}>Option C</DropdownMenu.Item>
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
+          <h3>Medium - With Icons</h3>
+          <DropdownMenu.StaticContent size="md">
+            <DropdownMenu.StaticItem icon={<DashboardNavIcon />}>Dashboard</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem icon={<SettingsNavIcon />} disabled>
+              Explorer
+            </DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem icon={<AlertsNavIcon />}>Alerts</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem icon={<UserAvatarIcon />} active>
+              Settings
+            </DropdownMenu.StaticItem>
+          </DropdownMenu.StaticContent>
         </section>
+
         <section>
-          <h3>To the side</h3>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger asChild>
-              <Button variant="secondary">Open right</Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content side="right">
-              <DropdownMenu.Item onClick={() => {}}>Option 1</DropdownMenu.Item>
-              <DropdownMenu.Item onClick={() => {}}>Option 2</DropdownMenu.Item>
-              <DropdownMenu.Item onClick={() => {}}>Option 3</DropdownMenu.Item>
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
+          <h3>Large - With Icons</h3>
+          <DropdownMenu.StaticContent size="lg">
+            <DropdownMenu.StaticItem icon={<DashboardNavIcon />}>Dashboard</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem icon={<SettingsNavIcon />} disabled>
+              Explorer
+            </DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem icon={<AlertsNavIcon />}>Container</DropdownMenu.StaticItem>
+            <DropdownMenu.StaticItem icon={<UserAvatarIcon />} active>
+              Settings
+            </DropdownMenu.StaticItem>
+          </DropdownMenu.StaticContent>
+        </section>
+      </div>
+
+      <h3 style={{ marginTop: '2rem', marginBottom: '1rem' }}>With Search</h3>
+      <div className="demo-section__select-grid">
+        <section>
+          <h3>Small - With Search</h3>
+          <DropdownMenu.StaticContent size="sm">
+            <DropdownMenu.Searchable items={SEARCH_ITEMS_SM} placeholder="Search" />
+          </DropdownMenu.StaticContent>
+        </section>
+
+        <section>
+          <h3>Medium - With Search</h3>
+          <DropdownMenu.StaticContent size="md">
+            <DropdownMenu.Searchable items={SEARCH_ITEMS_MD} placeholder="Search" />
+          </DropdownMenu.StaticContent>
+        </section>
+
+        <section>
+          <h3>Large - With Search</h3>
+          <DropdownMenu.StaticContent size="lg">
+            <DropdownMenu.Searchable items={SEARCH_ITEMS_LG} placeholder="Search" />
+          </DropdownMenu.StaticContent>
+        </section>
+      </div>
+
+      <h3 style={{ marginTop: '2rem', marginBottom: '1rem' }}>Multiple Select</h3>
+      <div className="demo-section__select-grid">
+        <section>
+          <h3>Small - Multiple Select</h3>
+          <DropdownMenu.StaticContent size="sm">
+            <DropdownMenu.StaticCheckboxItem checked>Home</DropdownMenu.StaticCheckboxItem>
+            <DropdownMenu.StaticCheckboxItem disabled>Files</DropdownMenu.StaticCheckboxItem>
+            <DropdownMenu.StaticCheckboxItem>Settings</DropdownMenu.StaticCheckboxItem>
+            <DropdownMenu.StaticCheckboxItem checked active>
+              Profile
+            </DropdownMenu.StaticCheckboxItem>
+          </DropdownMenu.StaticContent>
+        </section>
+
+        <section>
+          <h3>Medium - Multiple Select</h3>
+          <DropdownMenu.StaticContent size="md">
+            <DropdownMenu.StaticCheckboxItem checked>Dashboard</DropdownMenu.StaticCheckboxItem>
+            <DropdownMenu.StaticCheckboxItem disabled>Explorer</DropdownMenu.StaticCheckboxItem>
+            <DropdownMenu.StaticCheckboxItem>Alerts</DropdownMenu.StaticCheckboxItem>
+            <DropdownMenu.StaticCheckboxItem checked active>
+              Settings
+            </DropdownMenu.StaticCheckboxItem>
+          </DropdownMenu.StaticContent>
+        </section>
+
+        <section>
+          <h3>Large - Multiple Select</h3>
+          <DropdownMenu.StaticContent size="lg">
+            <DropdownMenu.StaticCheckboxItem checked>Dashboard</DropdownMenu.StaticCheckboxItem>
+            <DropdownMenu.StaticCheckboxItem disabled>Explorer</DropdownMenu.StaticCheckboxItem>
+            <DropdownMenu.StaticCheckboxItem>Container</DropdownMenu.StaticCheckboxItem>
+            <DropdownMenu.StaticCheckboxItem checked active>
+              Settings
+            </DropdownMenu.StaticCheckboxItem>
+          </DropdownMenu.StaticContent>
         </section>
       </div>
     </section>
   )
 }
+
+export default DropdownMenuPage

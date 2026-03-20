@@ -6,12 +6,14 @@ import { cn } from '../../utils'
 
 export type { CheckedState } from '@radix-ui/react-checkbox'
 
+export type CheckboxSize = 'xs' | ComponentSize
+
 export type CheckboxProps = {
   /**
    * Size variant of the checkbox
    * @default 'md'
    */
-  size?: ComponentSize
+  size?: CheckboxSize
   /**
    * Color variant when checked
    * @default 'primary'

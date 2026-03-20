@@ -59,13 +59,13 @@ const getImmersionTempThresholds = (
 /**
  * Get color based on current temperature and thresholds
  *
- * @param currentTemp - Current temperature value
+ * @param currentTemp - Current temperature value (undefined/null when not reported)
  * @param containerStatus - Container status
  * @param containerSettings - Optional container settings with custom thresholds
  * @returns Color string for the temperature
  */
 export const getImmersionTemperatureColor = (
-  currentTemp: number,
+  currentTemp: number | null | undefined,
   containerStatus: string,
   containerSettings: ContainerSettings | null = null,
 ): string => {
@@ -89,13 +89,13 @@ export const getImmersionTemperatureColor = (
 /**
  * Determine if temperature should flash based on thresholds
  *
- * @param currentTemp - Current temperature value
+ * @param currentTemp - Current temperature value (undefined/null when not reported)
  * @param containerStatus - Container status
  * @param containerSettings - Optional container settings with custom thresholds
  * @returns Whether the temperature display should flash
  */
 export const shouldImmersionTemperatureFlash = (
-  currentTemp: number,
+  currentTemp: number | null | undefined,
   containerStatus: string,
   containerSettings: ContainerSettings | null = null,
 ): boolean => {
@@ -117,13 +117,13 @@ export const shouldImmersionTemperatureFlash = (
 /**
  * Determine if temperature should super-flash (widget flash) based on thresholds
  *
- * @param currentTemp - Current temperature value
+ * @param currentTemp - Current temperature value (undefined/null when not reported)
  * @param containerStatus - Container status
  * @param containerSettings - Optional container settings with custom thresholds
  * @returns Whether the widget should flash
  */
 export const shouldImmersionTemperatureSuperflash = (
-  currentTemp: number,
+  currentTemp: number | null | undefined,
   containerStatus: string,
   containerSettings: ContainerSettings | null = null,
 ): boolean => {

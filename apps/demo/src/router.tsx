@@ -10,6 +10,7 @@ import BitmainPage from './pages/explorer-containers/bitmain/bitmain-page'
 import { MicroBTPage } from './pages/explorer-containers/micro-bt/micro-bt-page'
 import { SecondaryStatCardDemo } from './pages/explorer-details-view/secondary-stat-card/secondary-stat-card-demo'
 import { SingleStatCardDemo } from './pages/explorer-details-view/single-stat-card/single-stat-card-demo'
+import { StatsGroupCardDemo } from './pages/explorer-details-view/stats-group-card/stats-group-card-demo'
 import { MosaicPageDemo } from './pages/mosaic-page/mosaic.page'
 import { StateExportsPage } from './pages/stats-export-page'
 import { WidgetTopRowPage } from './pages/widget-top-row-page'
@@ -59,6 +60,7 @@ const FormElementsPage = lazy(() =>
 const GaugeChartPage = lazy(() =>
   import('./pages/gauge-chart-page').then((m) => ({ default: m.GaugeChartPage })),
 )
+const InputPage = lazy(() => import('./pages/input-page').then((m) => ({ default: m.InputPage })))
 const LoaderPage = lazy(() =>
   import('./pages/loader-page').then((m) => ({ default: m.LoaderPage })),
 )
@@ -171,6 +173,11 @@ const DeviceExplorerPage = lazy(() =>
 const TanksBoxPage = lazy(() =>
   import('./pages/tanks-box-page').then((m) => ({ default: m.TanksBoxPage })),
 )
+const BitMainImmersionSummaryBoxPage = lazy(() =>
+  import('./pages/bitmain-immersion-summary-box-page').then((m) => ({
+    default: m.BitMainImmersionSummaryBoxPage,
+  })),
+)
 
 const SectionLoader = (): JSX.Element => (
   <div
@@ -201,6 +208,7 @@ export const router = createBrowserRouter(
         { path: 'action-button', element: withSuspense(ActionButtonPage) },
         { path: 'buttons', element: withSuspense(ButtonsPage) },
         { path: 'form-elements', element: withSuspense(FormElementsPage) },
+        { path: 'input', element: withSuspense(InputPage) },
         { path: 'select', element: withSuspense(SelectPage) },
         { path: 'checkbox-switch', element: withSuspense(CheckboxExample) },
         { path: 'radio', element: withSuspense(RadioExample) },
@@ -246,6 +254,10 @@ export const router = createBrowserRouter(
         { path: 'stats-export', element: withSuspense(StateExportsPage) },
         { path: 'widget-top-row', element: withSuspense(WidgetTopRowPage) },
         { path: 'tanks-box', element: withSuspense(TanksBoxPage) },
+        {
+          path: 'bitmain-immersion-summary-box',
+          element: withSuspense(BitMainImmersionSummaryBoxPage),
+        },
         { path: 'error-boundary', element: withSuspense(ErrorBoundaryPage) },
         { path: 'error-card', element: withSuspense(ErrorCardPage) },
         { path: 'active-incidents-card', element: withSuspense(ActiveIncidentsCardPage) },
@@ -261,6 +273,7 @@ export const router = createBrowserRouter(
         { path: 'micro-bt-container', element: withSuspense(MicroBTPage) },
         { path: 'secondary-stat-card', element: withSuspense(SecondaryStatCardDemo) },
         { path: 'single-stat-card', element: withSuspense(SingleStatCardDemo) },
+        { path: 'stats-group-card', element: withSuspense(StatsGroupCardDemo) },
         { path: '*', element: withSuspense(NotFoundPage) },
       ],
     },

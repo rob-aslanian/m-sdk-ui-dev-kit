@@ -1,0 +1,38 @@
+@use '@mining-sdk/core/styles' as *;
+
+.mining-sdk-bitmain-immersion-summary-box {
+  @include flex_column;
+  gap: 16px;
+}
+
+.mining-sdk-bitmain-immersion-summary-box__pumps {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.mining-sdk-bitmain-immersion-summary-box__pump {
+  @include flex_column;
+  gap: 8px;
+}
+
+.mining-sdk-bitmain-immersion-summary-box__pump-title {
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--mining-sdk-color-white-5, #ffffff80);
+}
+
+.mining-sdk-bitmain-immersion-summary-box__liquid-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  & > :first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.mining-sdk-bitmain-immersion-summary-box .mining-sdk-indicator {
+  padding: 4px 8px;
+  gap: 4px;
+}

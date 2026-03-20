@@ -1,114 +1,85 @@
-/**
- * Dropdown Menu Component Styles (mining-os theme - Default)
- *
- * - Content: Dark background, matches Select/Popover
- * - Items: Light gray text, orange highlight on hover/focus
- * - Label: Light gray, non-interactive
- * - Supports icons, shortcuts, separators, submenus
- */
+@use "sass:map";
+@use "../../styles/mixins" as *;
+@use "./tokens" as *;
 
-.mining-sdk-dropdown-menu__content {
-  min-width: 12rem;
-  overflow: hidden;
-  background-color: var(--mining-sdk-dropdown-menu-content-bg, #1a1a1a);
-  color: var(--mining-sdk-popover-text, #ffffff);
-  border: 1px solid var(--mining-sdk-popover-border, #ffffff1a);
-  border-radius: 4px;
-  box-shadow: var(--mining-sdk-shadow-md);
-  z-index: 10000;
-  padding: 6px 4px;
+.mining-sdk-dropdown-menu {
+  &__content {
+    z-index: 10000;
+    overflow: hidden;
+    border: 1px solid $content-border-color;
+    background-color: $content-background-color;
 
-  &--align-width {
-    width: var(--radix-dropdown-menu-trigger-width);
-    min-width: unset;
-    max-height: var(--radix-dropdown-menu-content-available-height);
-  }
-}
-
-.mining-sdk-dropdown-menu__item {
-  @include flex_align;
-
-  position: relative;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  outline: none;
-  cursor: pointer;
-  user-select: none;
-  border-radius: 4px;
-  color: var(--mining-sdk-dropdown-menu-item-text, #e1e0e0);
-
-  &[data-highlighted] {
-    background-color: var(--mining-sdk-color-primary, #f7931a);
-    color: var(--mining-sdk-dropdown-menu-item-highlighted-text, #1a1a1a);
+    @each $size, $config in $dropdown-sizes {
+      &--size-#{$size} {
+        max-width: map.get($config, content-max-width);
+      }
+    }
   }
 
-  &[data-disabled] {
-    pointer-events: none;
-    opacity: 0.5;
+  &__item {
+    @include flex_align;
+
+    position: relative;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    color: $menu-item-text-color;
+    transition: background-color 0.3s ease;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $content-item-border-color;
+    }
+
+    &[data-highlighted],
+    &:hover {
+      background-color: $content-item-hover-background-color;
+    }
+
+    &[data-disabled] {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    &[data-active] {
+      color: $menu-item-active-text-color;
+      background-color: $menu-item-active-background-color;
+    }
+
+    @each $size, $config in $dropdown-sizes {
+      @include dropdown-item-size($size, $config);
+    }
   }
-}
 
-.mining-sdk-dropdown-menu__item-icon {
-  flex-shrink: 0;
-  width: 1rem;
-  height: 1rem;
-}
+  &__item-icon {
+    @include flex_center;
+    flex-shrink: 0;
+  }
 
-.mining-sdk-dropdown-menu__item-shortcut {
-  margin-left: auto;
-  font-family: inherit;
-  font-size: 12px;
-  color: var(--mining-sdk-color-text-secondary, #ffffffd9);
-}
+  &__search {
+    @each $size, $config in $dropdown-sizes {
+      @include dropdown-search-size($size, $config);
+    }
+  }
 
-.mining-sdk-dropdown-menu__item[data-highlighted] .mining-sdk-dropdown-menu__item-shortcut {
-  color: var(--mining-sdk-dropdown-menu-item-highlighted-text, #1a1a1a);
-}
+  &__search-input {
+    border: none !important;
+    padding-right: 14px !important;
+    background-color: $search-input-background-color;
+    border-bottom: 1px solid $content-item-border-color !important;
+  }
 
-.mining-sdk-dropdown-menu__checkbox-item,
-.mining-sdk-dropdown-menu__radio-item {
-  @extend .mining-sdk-dropdown-menu__item;
-}
+  &__empty {
+    @include flex_center;
 
-.mining-sdk-dropdown-menu__item-indicator {
-  @include flex_center;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: -0.5px;
+    color: $menu-item-text-color;
 
-  margin-left: auto;
-  color: var(--mining-sdk-dropdown-menu-item-highlighted-text, #1a1a1a);
-}
-
-.mining-sdk-dropdown-menu__label {
-  padding: 0.5rem 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--mining-sdk-color-text-secondary, #ffffffd9);
-}
-
-.mining-sdk-dropdown-menu__separator {
-  height: 1px;
-  margin: 4px 0;
-  background-color: var(--mining-sdk-popover-border, #ffffff1a);
-}
-
-.mining-sdk-dropdown-menu__sub-trigger {
-  @extend .mining-sdk-dropdown-menu__item;
-}
-
-.mining-sdk-dropdown-menu__sub-trigger[data-state='open'] {
-  background-color: var(--mining-sdk-color-primary, #f7931a);
-  color: var(--mining-sdk-dropdown-menu-item-highlighted-text, #1a1a1a);
-}
-
-.mining-sdk-dropdown-menu__sub-content {
-  min-width: 10rem;
-  overflow: hidden;
-  background-color: var(--mining-sdk-dropdown-menu-content-bg, #1a1a1a);
-  color: var(--mining-sdk-popover-text, #ffffff);
-  border: 1px solid var(--mining-sdk-popover-border, #ffffff1a);
-  border-radius: 4px;
-  box-shadow: var(--mining-sdk-shadow-md);
-  padding: 6px 4px;
+    @each $size, $config in $dropdown-sizes {
+      @include dropdown-empty-size($size, $config);
+    }
+  }
 }

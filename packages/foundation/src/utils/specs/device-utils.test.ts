@@ -11,6 +11,7 @@ import {
   getDeviceData,
   getHashrateString,
   getHashrateUnit,
+  getIsMinerPowerReadingAvailable,
   getLast,
   getLvCabinetTempSensorColor,
   getLvCabinetTitle,
@@ -21,6 +22,7 @@ import {
   getSnap,
   getStats,
   getTransformerCabinetTitle,
+  isMiner,
   isMinerOffline,
   isTransformerCabinet,
   megaToTera,
@@ -969,6 +971,65 @@ describe('device utils', () => {
       const result = appendContainerToTag(tag)
 
       expect(result).toBe('container-tag1')
+    })
+  })
+
+  describe('getIsMinerPowerReadingAvailable', () => {
+    it('returns undefined when model is undefined', () => {
+      expect(getIsMinerPowerReadingAvailable(undefined)).toBeUndefined()
+    })
+
+    it('returns whatsminer availability', () => {
+      const result = getIsMinerPowerReadingAvailable('wm')
+      expect(result).toBe(true)
+    })
+
+    it('returns antminer availability from map (true case)', () => {
+      const result = getIsMinerPowerReadingAvailable('miner-am-s21')
+      expect(result).toBe(true)
+    })
+
+    it('returns antminer availability from map (false case)', () => {
+      const result = getIsMinerPowerReadingAvailable('miner-am-s19xp')
+      expect(result).toBe(false)
+    })
+
+    it('returns undefined for antminer model not in map', () => {
+      const result = getIsMinerPowerReadingAvailable('antminer-unknown')
+      expect(result).toBeUndefined()
+    })
+
+    it('returns avalon availability', () => {
+      const result = getIsMinerPowerReadingAvailable('av')
+      expect(result).toBe(true)
+    })
+
+    it('is case insensitive', () => {
+      const result = getIsMinerPowerReadingAvailable('WM')
+      expect(result).toBe(true)
+    })
+
+    it('returns undefined for unknown model type', () => {
+      const result = getIsMinerPowerReadingAvailable('random-device')
+      expect(result).toBeUndefined()
+    })
+  })
+
+  describe('isMiner', () => {
+    it('returns true for miner type', () => {
+      expect(isMiner('miner-s19')).toBe(true)
+    })
+
+    it('returns false for non-miner type', () => {
+      expect(isMiner('container-s19')).toBe(false)
+    })
+
+    it('returns false for undefined', () => {
+      expect(isMiner(undefined)).toBe(false)
+    })
+
+    it('is case sensitive (does not match uppercase)', () => {
+      expect(isMiner('MINER-s19')).toBe(false)
     })
   })
 })

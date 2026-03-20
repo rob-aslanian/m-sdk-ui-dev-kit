@@ -200,6 +200,8 @@ describe('BitMainImmersionSettings', () => {
     it('color function works with low temperature', () => {
       vi.mocked(getImmersionTemperatureColor).mockReturnValueOnce('green')
 
+      render(<BitMainImmersionSettings data={mockDevice} />)
+
       expect(screen.getByTestId('color-result')).toHaveTextContent('green')
     })
 

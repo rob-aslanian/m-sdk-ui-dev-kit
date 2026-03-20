@@ -1,127 +1,193 @@
 import * as React from 'react'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
-import { CheckIcon, ChevronRightIcon } from '@radix-ui/react-icons'
 
 import { cn } from '../../utils'
+import { Checkbox } from '../checkbox'
+import { Input } from '../input'
 
+// Re-export Radix primitives
 const DropdownMenu = DropdownMenuPrimitive.Root
 const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
 const DropdownMenuGroup = DropdownMenuPrimitive.Group
 const DropdownMenuPortal = DropdownMenuPrimitive.Portal
 
+// Types
+type DropdownMenuSize = 'sm' | 'md' | 'lg'
+
+type BaseStaticItemProps = {
+  disabled?: boolean
+  active?: boolean
+}
+
+// Context for size propagation
+const DropdownMenuSizeContext = React.createContext<DropdownMenuSize>('md')
+
+// Content
 type DropdownMenuContentProps = React.ComponentPropsWithoutRef<
   typeof DropdownMenuPrimitive.Content
 > & {
-  /**
-   * When true, content width matches the trigger width.
-   * Uses Radix's --radix-dropdown-menu-trigger-width CSS variable.
-   * @default false
-   */
-  alignWidth?: boolean
+  /** @default 'md' */
+  size?: DropdownMenuSize
 }
 
-/**
- * DropdownMenuContent - The dropdown panel
- */
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   DropdownMenuContentProps
->(({ className, sideOffset = 4, alignWidth = false, align, ...props }, ref) => (
-  <DropdownMenuPrimitive.Portal>
-    <DropdownMenuPrimitive.Content
-      ref={ref}
-      sideOffset={sideOffset}
-      align={align ?? (alignWidth ? 'start' : undefined)}
-      className={cn(
-        'mining-sdk-dropdown-menu__content',
-        alignWidth && 'mining-sdk-dropdown-menu__content--align-width',
-        className,
-      )}
-      {...props}
-    />
-  </DropdownMenuPrimitive.Portal>
+>(({ className, sideOffset = 4, size = 'md', ...props }, ref) => (
+  <DropdownMenuSizeContext.Provider value={size}>
+    <DropdownMenuPrimitive.Portal>
+      <DropdownMenuPrimitive.Content
+        ref={ref}
+        sideOffset={sideOffset}
+        className={cn(
+          'mining-sdk-dropdown-menu__content',
+          `mining-sdk-dropdown-menu__content--size-${size}`,
+          className,
+        )}
+        {...props}
+      />
+    </DropdownMenuPrimitive.Portal>
+  </DropdownMenuSizeContext.Provider>
 ))
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
 
-/**
- * DropdownMenuItem - A single menu item
- */
+type DropdownMenuStaticContentProps = React.HTMLAttributes<HTMLDivElement> & {
+  /** @default 'md' */
+  size?: DropdownMenuSize
+}
+
+const DropdownMenuStaticContent = React.forwardRef<HTMLDivElement, DropdownMenuStaticContentProps>(
+  ({ className, size = 'md', ...props }, ref) => (
+    <DropdownMenuSizeContext.Provider value={size}>
+      <div
+        ref={ref}
+        className={cn(
+          'mining-sdk-dropdown-menu__content',
+          `mining-sdk-dropdown-menu__content--size-${size}`,
+          className,
+        )}
+        {...props}
+      />
+    </DropdownMenuSizeContext.Provider>
+  ),
+)
+DropdownMenuStaticContent.displayName = 'DropdownMenuStaticContent'
+
+// Item
+type DropdownMenuItemProps = React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
+  icon?: React.ReactNode
+}
+
 const DropdownMenuItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item>
->(({ className, ...props }, ref) => (
-  <DropdownMenuPrimitive.Item
-    ref={ref}
-    className={cn('mining-sdk-dropdown-menu__item', className)}
-    {...props}
-  />
-))
+  DropdownMenuItemProps
+>(({ className, icon, children, ...props }, ref) => {
+  const size = React.useContext(DropdownMenuSizeContext)
+
+  return (
+    <DropdownMenuPrimitive.Item
+      ref={ref}
+      className={cn(
+        'mining-sdk-dropdown-menu__item',
+        `mining-sdk-dropdown-menu__item--size-${size}`,
+        className,
+      )}
+      {...props}
+    >
+      {icon && <span className="mining-sdk-dropdown-menu__item-icon">{icon}</span>}
+      {children}
+    </DropdownMenuPrimitive.Item>
+  )
+})
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
 
-/**
- * DropdownMenuCheckboxItem - A menu item with checkbox state
- */
+type DropdownMenuStaticItemProps = React.HTMLAttributes<HTMLDivElement> &
+  BaseStaticItemProps & {
+    icon?: React.ReactNode
+  }
+
+const DropdownMenuStaticItem = React.forwardRef<HTMLDivElement, DropdownMenuStaticItemProps>(
+  ({ className, icon, disabled, active, children, ...props }, ref) => {
+    const size = React.useContext(DropdownMenuSizeContext)
+
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          'mining-sdk-dropdown-menu__item',
+          `mining-sdk-dropdown-menu__item--size-${size}`,
+          className,
+        )}
+        data-disabled={disabled || undefined}
+        data-active={active || undefined}
+        {...props}
+      >
+        {icon && <span className="mining-sdk-dropdown-menu__item-icon">{icon}</span>}
+        {children}
+      </div>
+    )
+  },
+)
+DropdownMenuStaticItem.displayName = 'DropdownMenuStaticItem'
+
+type DropdownMenuCheckboxItemProps = React.ComponentPropsWithoutRef<
+  typeof DropdownMenuPrimitive.CheckboxItem
+>
+
 const DropdownMenuCheckboxItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
->(({ className, children, checked, ...props }, ref) => (
-  <DropdownMenuPrimitive.CheckboxItem
-    ref={ref}
-    className={cn('mining-sdk-dropdown-menu__checkbox-item', className)}
-    checked={checked}
-    {...props}
-  >
-    {children}
-    <DropdownMenuPrimitive.ItemIndicator className="mining-sdk-dropdown-menu__item-indicator">
-      <CheckIcon />
-    </DropdownMenuPrimitive.ItemIndicator>
-  </DropdownMenuPrimitive.CheckboxItem>
-))
+  DropdownMenuCheckboxItemProps
+>(({ className, children, checked, ...props }, ref) => {
+  const size = React.useContext(DropdownMenuSizeContext)
+
+  return (
+    <DropdownMenuPrimitive.CheckboxItem
+      ref={ref}
+      className={cn(
+        'mining-sdk-dropdown-menu__item',
+        `mining-sdk-dropdown-menu__item--size-${size}`,
+        className,
+      )}
+      checked={checked}
+      {...props}
+    >
+      <Checkbox checked={checked === true} size="xs" />
+      {children}
+    </DropdownMenuPrimitive.CheckboxItem>
+  )
+})
 DropdownMenuCheckboxItem.displayName = DropdownMenuPrimitive.CheckboxItem.displayName
 
-/**
- * DropdownMenuRadioGroup - Container for radio items
- */
-const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
+type DropdownMenuStaticCheckboxItemProps = React.HTMLAttributes<HTMLDivElement> &
+  BaseStaticItemProps & {
+    checked?: boolean
+  }
 
-/**
- * DropdownMenuRadioItem - A menu item with radio state
- */
-const DropdownMenuRadioItem = React.forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
->(({ className, children, ...props }, ref) => (
-  <DropdownMenuPrimitive.RadioItem
-    ref={ref}
-    className={cn('mining-sdk-dropdown-menu__radio-item', className)}
-    {...props}
-  >
-    {children}
-    <DropdownMenuPrimitive.ItemIndicator className="mining-sdk-dropdown-menu__item-indicator">
-      <CheckIcon />
-    </DropdownMenuPrimitive.ItemIndicator>
-  </DropdownMenuPrimitive.RadioItem>
-))
-DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName
+const DropdownMenuStaticCheckboxItem = React.forwardRef<
+  HTMLDivElement,
+  DropdownMenuStaticCheckboxItemProps
+>(({ className, checked, disabled, active, children, ...props }, ref) => {
+  const size = React.useContext(DropdownMenuSizeContext)
 
-/**
- * DropdownMenuLabel - Non-interactive label for a group
- */
-const DropdownMenuLabel = React.forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label>
->(({ className, ...props }, ref) => (
-  <DropdownMenuPrimitive.Label
-    ref={ref}
-    className={cn('mining-sdk-dropdown-menu__label', className)}
-    {...props}
-  />
-))
-DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        'mining-sdk-dropdown-menu__item',
+        `mining-sdk-dropdown-menu__item--size-${size}`,
+        className,
+      )}
+      data-disabled={disabled || undefined}
+      data-active={active || undefined}
+      {...props}
+    >
+      <Checkbox checked={checked} size="xs" />
+      {children}
+    </div>
+  )
+})
+DropdownMenuStaticCheckboxItem.displayName = 'DropdownMenuStaticCheckboxItem'
 
-/**
- * DropdownMenuSeparator - Visual separator between items
- */
 const DropdownMenuSeparator = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
@@ -134,102 +200,139 @@ const DropdownMenuSeparator = React.forwardRef<
 ))
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName
 
-/**
- * DropdownMenuShortcut - Keyboard shortcut display (e.g. ⌘C)
- */
-const DropdownMenuShortcut = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement>): React.ReactElement => (
-  <span className={cn('mining-sdk-dropdown-menu__item-shortcut', className)} {...props} />
+type DropdownMenuSearchProps = React.ComponentPropsWithoutRef<typeof Input>
+
+const DropdownMenuSearch = React.forwardRef<HTMLInputElement, DropdownMenuSearchProps>(
+  ({ className, placeholder = 'Search', ...props }, ref) => {
+    const size = React.useContext(DropdownMenuSizeContext)
+
+    return (
+      <div
+        className={cn(
+          'mining-sdk-dropdown-menu__search',
+          `mining-sdk-dropdown-menu__search--size-${size}`,
+        )}
+      >
+        <Input
+          ref={ref}
+          variant="search"
+          placeholder={placeholder}
+          className={cn('mining-sdk-dropdown-menu__search-input', className)}
+          {...props}
+        />
+      </div>
+    )
+  },
 )
-DropdownMenuShortcut.displayName = 'DropdownMenuShortcut'
+DropdownMenuSearch.displayName = 'DropdownMenuSearch'
 
-/**
- * DropdownMenuSub - Submenu container
- */
-const DropdownMenuSub = DropdownMenuPrimitive.Sub
+type DropdownMenuEmptyProps = React.HTMLAttributes<HTMLDivElement> & {
+  /** @default 'No matching results found' */
+  message?: string
+}
 
-/**
- * DropdownMenuSubTrigger - Opens a submenu
- */
-const DropdownMenuSubTrigger = React.forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger>
->(({ className, children, ...props }, ref) => (
-  <DropdownMenuPrimitive.SubTrigger
-    ref={ref}
-    className={cn('mining-sdk-dropdown-menu__sub-trigger', className)}
-    {...props}
-  >
-    {children}
-    <ChevronRightIcon className="mining-sdk-dropdown-menu__item-icon" />
-  </DropdownMenuPrimitive.SubTrigger>
-))
-DropdownMenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName
+const DropdownMenuEmpty = React.forwardRef<HTMLDivElement, DropdownMenuEmptyProps>(
+  ({ className, message = 'No matching results found', children, ...props }, ref) => {
+    const size = React.useContext(DropdownMenuSizeContext)
 
-/**
- * DropdownMenuSubContent - Submenu panel
- */
-const DropdownMenuSubContent = React.forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>
->(({ className, ...props }, ref) => (
-  <DropdownMenuPrimitive.SubContent
-    ref={ref}
-    className={cn('mining-sdk-dropdown-menu__sub-content', className)}
-    {...props}
-  />
-))
-DropdownMenuSubContent.displayName = DropdownMenuPrimitive.SubContent.displayName
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          'mining-sdk-dropdown-menu__empty',
+          `mining-sdk-dropdown-menu__empty--size-${size}`,
+          className,
+        )}
+        {...props}
+      >
+        {children || message}
+      </div>
+    )
+  },
+)
+DropdownMenuEmpty.displayName = 'DropdownMenuEmpty'
 
-// Aliases for DropdownMenu.Root, DropdownMenu.Trigger, etc. (namespace usage)
-const Root = DropdownMenu
-const Trigger = DropdownMenuTrigger
-const Content = DropdownMenuContent
-const Item = DropdownMenuItem
-const CheckboxItem = DropdownMenuCheckboxItem
-const RadioGroup = DropdownMenuRadioGroup
-const RadioItem = DropdownMenuRadioItem
-const Label = DropdownMenuLabel
-const Separator = DropdownMenuSeparator
-const Shortcut = DropdownMenuShortcut
-const Group = DropdownMenuGroup
-const Portal = DropdownMenuPortal
-const Sub = DropdownMenuSub
-const SubContent = DropdownMenuSubContent
-const SubTrigger = DropdownMenuSubTrigger
+type SearchableItem = {
+  label: string
+  icon?: React.ReactNode
+} & BaseStaticItemProps
+
+type DropdownMenuSearchableProps = {
+  items: SearchableItem[]
+  /** @default 'Search' */
+  placeholder?: string
+  /** @default 'No matching results found' */
+  emptyMessage?: string
+  onItemSelect?: (item: SearchableItem) => void
+}
+
+const DropdownMenuSearchable: React.FC<DropdownMenuSearchableProps> = ({
+  items,
+  placeholder = 'Search',
+  emptyMessage = 'No matching results found',
+  onItemSelect,
+}) => {
+  const [search, setSearch] = React.useState('')
+
+  const filteredItems = items.filter((item) =>
+    item.label.toLowerCase().includes(search.toLowerCase()),
+  )
+
+  return (
+    <>
+      <DropdownMenuSearch
+        placeholder={placeholder}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      {filteredItems.length > 0 ? (
+        filteredItems.map((item) => (
+          <DropdownMenuStaticItem
+            key={item.label}
+            disabled={item.disabled}
+            active={item.active}
+            icon={item.icon}
+            onClick={() => onItemSelect?.(item)}
+          >
+            {item.label}
+          </DropdownMenuStaticItem>
+        ))
+      ) : (
+        <DropdownMenuEmpty message={emptyMessage} />
+      )}
+    </>
+  )
+}
+DropdownMenuSearchable.displayName = 'DropdownMenuSearchable'
 
 export {
-  CheckboxItem,
-  Content,
+  // Aliases
+  DropdownMenuCheckboxItem as CheckboxItem,
+  DropdownMenuContent as Content,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuEmpty,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuPortal,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
+  DropdownMenuSearch,
+  DropdownMenuSearchable,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
+  DropdownMenuStaticCheckboxItem,
+  DropdownMenuStaticContent,
+  DropdownMenuStaticItem,
   DropdownMenuTrigger,
-  Group,
-  Item,
-  Label,
-  Portal,
-  RadioGroup,
-  RadioItem,
-  // Namespace aliases
-  Root,
-  Separator,
-  Shortcut,
-  Sub,
-  SubContent,
-  SubTrigger,
-  Trigger,
+  DropdownMenuEmpty as Empty,
+  DropdownMenuGroup as Group,
+  DropdownMenuItem as Item,
+  DropdownMenuPortal as Portal,
+  DropdownMenu as Root,
+  DropdownMenuSearch as Search,
+  DropdownMenuSearchable as Searchable,
+  DropdownMenuSeparator as Separator,
+  DropdownMenuStaticCheckboxItem as StaticCheckboxItem,
+  DropdownMenuStaticContent as StaticContent,
+  DropdownMenuStaticItem as StaticItem,
+  DropdownMenuTrigger as Trigger,
 }

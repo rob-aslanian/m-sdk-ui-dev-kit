@@ -22,9 +22,15 @@ import _replace from 'lodash/replace'
 import _round from 'lodash/round'
 import _slice from 'lodash/slice'
 import _split from 'lodash/split'
+import _startsWith from 'lodash/startsWith'
+import _toLower from 'lodash/toLower'
 import _toUpper from 'lodash/toUpper'
 import { SEVERITY, SEVERITY_COLORS } from '../constants/alerts'
-import { MINER_MODEL_TO_TYPE_MAP } from '../constants/device-constants'
+import {
+  COMPLETE_MINER_TYPES,
+  MINER_MODEL_TO_TYPE_MAP,
+  MINER_TYPE,
+} from '../constants/device-constants'
 import type { Device } from '../types/device'
 import { MINER_POWER_MODE } from './status-utils'
 
@@ -110,6 +116,17 @@ export const MinerStatuses = {
   MAINTENANCE: 'maintenance',
   ALERT: 'alert',
 } as const
+
+const MinerPowerReadingAvailability = {
+  [MINER_TYPE.ANTMINER]: {
+    [COMPLETE_MINER_TYPES.ANTMINER_AM_S21]: true,
+    [COMPLETE_MINER_TYPES.ANTMINER_AM_S21PRO]: true,
+    [COMPLETE_MINER_TYPES.ANTMINER_AM_S19XP]: false,
+    [COMPLETE_MINER_TYPES.ANTMINER_AM_S19XP_H]: false,
+  },
+  [MINER_TYPE.AVALON]: true,
+  [MINER_TYPE.WHATSMINER]: true,
+}
 
 export const isMinerOffline = (device: UnknownRecord): boolean => {
   const stats = getStats(device)
@@ -281,3 +298,23 @@ export const getDeviceData = (
 }
 
 export const appendContainerToTag = (deviceId: string): string => `container-${deviceId}`
+
+export const getIsMinerPowerReadingAvailable = (model: string | undefined): boolean | undefined => {
+  // COMPLETE_MINER_TYPES.ANTMINER_AM_S21 also covers s21pro
+  if (model && _includes(_toLower(model), MINER_TYPE.WHATSMINER)) {
+    return MinerPowerReadingAvailability[MINER_TYPE.WHATSMINER]
+  }
+  if (model && _includes(_toLower(model), MINER_TYPE.ANTMINER)) {
+    const antminerMap = MinerPowerReadingAvailability[MINER_TYPE.ANTMINER] as Record<
+      string,
+      boolean
+    >
+    return antminerMap[model]
+  }
+  if (model && _includes(_toLower(model), MINER_TYPE.AVALON)) {
+    return MinerPowerReadingAvailability[MINER_TYPE.AVALON]
+  }
+  return undefined
+}
+
+export const isMiner = (type: string | undefined): boolean => _startsWith(type, 'miner-')

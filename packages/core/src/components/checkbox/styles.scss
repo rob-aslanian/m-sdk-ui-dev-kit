@@ -55,6 +55,17 @@
    SIZE VARIANTS
    ======================================== */
 
+/* Extra Small */
+.mining-sdk-checkbox--xs {
+  width: 13px;
+  height: 13px;
+
+  .mining-sdk-checkbox__icon {
+    width: 9px;
+    height: 9px;
+  }
+}
+
 /* Small */
 .mining-sdk-checkbox--sm {
   width: 16px;
@@ -186,6 +197,13 @@
 }
 
 /* Indeterminate sizes */
+.mining-sdk-checkbox--xs[data-state='indeterminate'] {
+  .mining-sdk-checkbox__indicator::after {
+    width: 7px;
+    height: 7px;
+  }
+}
+
 .mining-sdk-checkbox--sm[data-state='indeterminate'] {
   .mining-sdk-checkbox__indicator::after {
     width: 8px;
