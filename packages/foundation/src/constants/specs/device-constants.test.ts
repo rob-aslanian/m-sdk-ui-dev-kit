@@ -7,6 +7,7 @@ import {
   MINER_TYPE_BAR_CHART_ITEM_STYLE_KEY_DEFAULT,
   MINER_TYPES_BAR_CHART_ITEM_STYLE_KEY_MAP,
   MINER_TYPES_COLOR_MAP,
+  MinerStatuses,
 } from '../device-constants'
 
 describe('device constants', () => {
@@ -81,6 +82,37 @@ describe('device constants', () => {
       Object.values(MINER_TYPES_BAR_CHART_ITEM_STYLE_KEY_MAP).forEach((style) => {
         expect(style).toBe(style.toUpperCase())
       })
+    })
+  })
+
+  describe('miner statuses', () => {
+    it('should have all miner status types', () => {
+      expect(MinerStatuses.MINING).toBe('mining')
+      expect(MinerStatuses.OFFLINE).toBe('offline')
+      expect(MinerStatuses.SLEEPING).toBe('sleeping')
+      expect(MinerStatuses.ERROR).toBe('error')
+      expect(MinerStatuses.NOT_MINING).toBe('not_mining')
+      expect(MinerStatuses.MAINTENANCE).toBe('maintenance')
+      expect(MinerStatuses.ALERT).toBe('alert')
+    })
+
+    it('should have lowercase status values', () => {
+      Object.values(MinerStatuses).forEach((status) => {
+        expect(status).toBe(status.toLowerCase())
+      })
+    })
+
+    it('should have all expected statuses', () => {
+      const statuses = Object.values(MinerStatuses)
+      expect(statuses).toHaveLength(7)
+    })
+
+    it('should have operational and non-operational statuses', () => {
+      const statuses = Object.values(MinerStatuses)
+      expect(statuses).toContain('mining')
+      expect(statuses).toContain('offline')
+      expect(statuses).toContain('sleeping')
+      expect(statuses).toContain('error')
     })
   })
 })

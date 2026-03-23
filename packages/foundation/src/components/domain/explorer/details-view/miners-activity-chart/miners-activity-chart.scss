@@ -1,0 +1,35 @@
+@use '@mining-sdk/core/styles' as *;
+
+.mining-sdk-miners-activity-chart {
+  &__root {
+    @include flex_align;
+
+    gap: 8px;
+  }
+
+  &__label {
+    white-space: nowrap;
+    text-align: center;
+    text-transform: capitalize;
+
+    @media (max-width: 475px) {
+      font-size: 9px;
+    }
+
+    &--large {
+      font-size: 14px;
+      white-space: nowrap;
+      text-align: center;
+      text-transform: capitalize;
+
+      @media (max-width: 475px) {
+        font-size: 9px;
+      }
+    }
+  }
+
+  &__item--large {
+    font-size: 16px;
+    gap: 8px;
+  }
+}

@@ -6,6 +6,16 @@ export const MINER_MODEL = {
   WHATSMINER: 'whatsminer',
 } as const
 
+export const MinerStatuses = {
+  MINING: 'mining',
+  OFFLINE: 'offline',
+  SLEEPING: 'sleeping',
+  ERROR: 'error',
+  NOT_MINING: 'not_mining',
+  MAINTENANCE: 'maintenance',
+  ALERT: 'alert',
+} as const
+
 export const MINER_TYPE = {
   AVALON: 'av',
   ANTMINER: 'am',

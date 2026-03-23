@@ -1,4 +1,7 @@
-import { MinerStatuses } from '../../../../../utils/device-utils'
+import type { IndicatorColor } from '@mining-sdk/core'
+import { COLOR } from '@mining-sdk/core'
+import { MinerStatuses } from '../../../../../constants/device-constants'
+import { PowerModeColors } from '../../../../../utils/device-utils'
 import { MINER_POWER_MODE, SOCKET_STATUSES } from '../../../../../utils/status-utils'
 
 type StatusItems = (
@@ -48,3 +51,28 @@ export const MINERS_ACTIVITY_LABELS = {
 
 export const SKELETON_MIN_HEIGHT_LARGE = 120
 export const SKELETON_MIN_HEIGHT_DEFAULT = 80
+
+export const MinersActivityIndicatorColors = {
+  [MinerStatuses.OFFLINE]: 'gray',
+  [MinerStatuses.ERROR]: 'red',
+  [MINER_POWER_MODE.LOW]: 'yellow',
+  [MINER_POWER_MODE.NORMAL]: 'green',
+  [MINER_POWER_MODE.HIGH]: 'purple',
+} satisfies Record<string, IndicatorColor>
+
+export const MinerStatusColors: Partial<
+  Record<(typeof MinerStatuses)[keyof typeof MinerStatuses], string>
+> = {
+  [MinerStatuses.ERROR]: COLOR.BRICK_RED,
+  [MinerStatuses.NOT_MINING]: COLOR.BRICK_RED,
+  [MinerStatuses.OFFLINE]: COLOR.DARK_GREY,
+  [MinerStatuses.SLEEPING]: COLOR.SLEEP_BLUE,
+  [MinerStatuses.MAINTENANCE]: COLOR.ORANGE_WARNING,
+} as const
+
+export const SOCKET_CONTAINER_COLOR = {
+  ...MinerStatusColors,
+  ...PowerModeColors,
+  [SOCKET_STATUSES.ERROR_MINING]: COLOR.COLD_ORANGE,
+  [SOCKET_STATUSES.MINER_DISCONNECTED]: COLOR.SIMPLE_BLACK,
+} as const

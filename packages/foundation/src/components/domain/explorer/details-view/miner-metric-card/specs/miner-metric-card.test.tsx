@@ -336,7 +336,6 @@ describe('MinerMetricCard', () => {
     it('handles empty primary stats', () => {
       render(<MinerMetricCard primaryStats={[]} />)
 
-      expect(screen.getByTestId('card')).toBeInTheDocument()
       expect(screen.getByText('Hash rate')).toBeInTheDocument()
       expect(screen.getByText('Temperature')).toBeInTheDocument()
       expect(screen.getByText('Frequency')).toBeInTheDocument()

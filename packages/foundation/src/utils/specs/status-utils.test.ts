@@ -1,14 +1,5 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { CONTAINER_STATUS, MINER_POWER_MODE, SOCKET_STATUSES } from '../status-utils'
-
-vi.mock('../device-utils', () => ({
-  MinerStatuses: {
-    OFFLINE: 'offline',
-    NOT_MINING: 'notMining',
-    MAINTENANCE: 'maintenance',
-    ERROR: 'error',
-  },
-}))
 
 describe('status utils', () => {
   describe('container status', () => {

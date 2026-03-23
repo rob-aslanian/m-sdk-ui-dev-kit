@@ -26,7 +26,6 @@ import {
   isMinerOffline,
   isTransformerCabinet,
   megaToTera,
-  MinerStatuses,
   PowerModeColors,
   removeContainerPrefix,
 } from '../device-utils'
@@ -586,37 +585,6 @@ describe('device utils', () => {
       const name = getMinerName('miner-am-s19')
       expect(name).toBeTruthy()
       expect(typeof name).toBe('string')
-    })
-  })
-
-  describe('miner statuses', () => {
-    it('should have all miner status types', () => {
-      expect(MinerStatuses.MINING).toBe('mining')
-      expect(MinerStatuses.OFFLINE).toBe('offline')
-      expect(MinerStatuses.SLEEPING).toBe('sleeping')
-      expect(MinerStatuses.ERROR).toBe('error')
-      expect(MinerStatuses.NOT_MINING).toBe('not_mining')
-      expect(MinerStatuses.MAINTENANCE).toBe('maintenance')
-      expect(MinerStatuses.ALERT).toBe('alert')
-    })
-
-    it('should have lowercase status values', () => {
-      Object.values(MinerStatuses).forEach((status) => {
-        expect(status).toBe(status.toLowerCase())
-      })
-    })
-
-    it('should have all expected statuses', () => {
-      const statuses = Object.values(MinerStatuses)
-      expect(statuses).toHaveLength(7)
-    })
-
-    it('should have operational and non-operational statuses', () => {
-      const statuses = Object.values(MinerStatuses)
-      expect(statuses).toContain('mining')
-      expect(statuses).toContain('offline')
-      expect(statuses).toContain('sleeping')
-      expect(statuses).toContain('error')
     })
   })
 

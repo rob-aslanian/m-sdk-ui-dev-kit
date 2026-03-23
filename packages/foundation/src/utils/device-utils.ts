@@ -30,6 +30,7 @@ import {
   COMPLETE_MINER_TYPES,
   MINER_MODEL_TO_TYPE_MAP,
   MINER_TYPE,
+  MinerStatuses,
 } from '../constants/device-constants'
 import type { Device } from '../types/device'
 import { MINER_POWER_MODE } from './status-utils'
@@ -106,16 +107,6 @@ export const getContainerSpecificConfig = (data: Device): UnknownRecord =>
 
 export const getCoolingSystem = (data: Device): UnknownRecord =>
   (getContainerSpecificStats(data)?.cooling_system || {}) as UnknownRecord
-
-export const MinerStatuses = {
-  MINING: 'mining',
-  OFFLINE: 'offline',
-  SLEEPING: 'sleeping',
-  ERROR: 'error',
-  NOT_MINING: 'not_mining',
-  MAINTENANCE: 'maintenance',
-  ALERT: 'alert',
-} as const
 
 const MinerPowerReadingAvailability = {
   [MINER_TYPE.ANTMINER]: {

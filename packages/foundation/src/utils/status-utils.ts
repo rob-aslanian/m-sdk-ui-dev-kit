@@ -1,4 +1,4 @@
-import { MinerStatuses } from './device-utils'
+import { MinerStatuses } from '../constants/device-constants'
 
 export const CONTAINER_STATUS = {
   RUNNING: 'running',

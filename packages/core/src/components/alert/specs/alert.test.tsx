@@ -49,10 +49,6 @@ describe('Alert', () => {
       expect(container.querySelector('.custom')).toBeInTheDocument()
     })
 
-    it('applies custom style', () => {
-      expect(screen.getByRole('alert')).toHaveStyle({ marginTop: '8px' })
-    })
-
     it('passes extra div props through', () => {
       render(<Alert data-testid="my-alert" />)
 

@@ -1,3 +1,4 @@
+import type { UnknownRecord } from '@mining-sdk/core'
 import {
   AlertTriangleIcon,
   ErrorStatusIcon,
@@ -7,11 +8,10 @@ import {
   SimpleTooltip,
   SleepStatusIcon,
 } from '@mining-sdk/core'
-import type { UnknownRecord } from '@mining-sdk/core'
-import { getAlertsString } from '../../../../../utils/alerts-utils'
-import { MinerStatuses } from '../../../../../utils/device-utils'
-import type { Alert } from '../../types'
 import _isObject from 'lodash/isObject'
+import { MinerStatuses } from '../../../../../constants/device-constants'
+import { getAlertsString } from '../../../../../utils/alerts-utils'
+import type { Alert } from '../../types'
 import { StatusLabel } from '../status-label/status-label'
 
 const MinerStatusIcon = ({ status = '' }): JSX.Element => {
