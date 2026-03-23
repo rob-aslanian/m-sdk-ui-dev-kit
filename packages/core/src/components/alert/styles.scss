@@ -4,7 +4,6 @@
   position: relative;
   gap: 10px;
   padding: 10px 14px;
-  border-radius: 6px;
   border: 1px solid transparent;
   font-size: 14px;
   font-family: var(--font-mono);
@@ -26,9 +25,9 @@
   }
 
   &--warning {
-    background-color: rgba(var(--mining-sdk-color-low-yellow), 0.1);
-    border-color: rgba(var(--mining-sdk-color-low-yellow), 0.3);
-    color: rgb(var(--mining-sdk-color-low-yellow));
+    background-color: rgba(var(--mining-sdk-color-warning-rgb), 0.1);
+    border-color: rgba(var(--mining-sdk-color-warning-rgb), 0.3);
+    color: rgb(var(--mining-sdk-color-warning-rgb));
   }
 
   &--error {
