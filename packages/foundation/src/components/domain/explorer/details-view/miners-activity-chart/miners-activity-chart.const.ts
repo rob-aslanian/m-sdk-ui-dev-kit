@@ -42,6 +42,7 @@ export const MINERS_ACTIVITY_ITEMS = {
 }
 
 export const MINERS_ACTIVITY_TOOLTIPS = {
+  // eslint-disable-next-line style/quotes
   [MinerStatuses.ERROR]: "This does not include minor errors not affecting the miner's hash rate",
 }
 
