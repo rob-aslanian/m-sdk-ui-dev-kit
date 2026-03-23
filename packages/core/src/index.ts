@@ -7,17 +7,18 @@
 // Styled components
 export * from './components/accordion'
 export * from './components/action-button'
-export * from './components/alert-dialog'
+export * from './components/alert'
 
+export * from './components/alert-dialog'
 // Chart components
 export * from './components/area-chart'
 export * from './components/avatar'
 // Re-export Radix primitives with namespaces to avoid conflicts
 export * from './components/badge'
+
 export * from './components/bar-chart'
 
 export * from './components/breadcrumbs'
-
 export * from './components/button'
 export * from './components/card'
 export * from './components/cascader'

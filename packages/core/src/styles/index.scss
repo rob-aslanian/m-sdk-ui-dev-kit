@@ -7,6 +7,7 @@
 @forward 'animations';
 
 // Component Styles
+@import '../components/alert/styles.scss';
 @import '../components/accordion/styles';
 @import '../components/action-button/styles';
 @import '../components/avatar/styles';

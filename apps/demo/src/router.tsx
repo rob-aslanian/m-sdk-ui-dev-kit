@@ -2,6 +2,7 @@ import { Spinner } from '@mining-sdk/core'
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import App from './App'
+import { AlertExample } from './examples/alert-example'
 import { ListViewFilterExample } from './examples/list-view-filter-example/list-view-filter-example'
 import { ChartWrapperPage } from './pages'
 import { BitdeerPage } from './pages/explorer-containers/bitdeer/bitdeer-page'
@@ -298,6 +299,7 @@ export const router = createBrowserRouter(
         { path: 'single-stat-card', element: withSuspense(SingleStatCardDemo) },
         { path: 'stats-group-card', element: withSuspense(StatsGroupCardDemo) },
         { path: 'miner-info-card', element: withSuspense(MinerInfoCardDemo) },
+        { path: 'alerts', element: withSuspense(AlertExample) },
         { path: '*', element: withSuspense(NotFoundPage) },
       ],
     },

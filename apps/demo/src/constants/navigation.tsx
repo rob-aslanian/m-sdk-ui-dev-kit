@@ -66,6 +66,7 @@ export const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'typography', label: 'Typography' },
       { id: 'tags', label: 'Tags' },
       { id: 'indicators', label: 'Indicators' },
+      { id: 'alerts', label: 'Alerts' },
       { id: 'mining-icons', label: 'Mining Icons' },
       { id: 'empty-state', label: 'Empty State' },
     ],

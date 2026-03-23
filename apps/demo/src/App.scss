@@ -143,6 +143,15 @@
     align-items: center;
   }
 
+  &__alerts {
+    &--content {
+      @include flex_column;
+
+      gap: 20px;
+      margin-bottom: 2rem;
+    }
+  }
+
   &__charts {
     display: grid;
     grid-template-columns: 1fr;
