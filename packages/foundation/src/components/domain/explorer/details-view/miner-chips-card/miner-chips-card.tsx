@@ -11,7 +11,7 @@ export const MinerChipsCard = ({ data }: MinerChipsCardProps) => {
   const getMinerChips = (): ReactElement[] =>
     (data?.frequency_mhz?.chips ?? [])
       .map((chip) => {
-        const tempData = data?.temperature_c?.chips?.find((t) => t.index === chip.index)
+        const tempData = data?.temperature_c?.chips?.find(({ index }) => index === chip.index)
 
         if (
           tempData?.max === undefined ||
@@ -34,7 +34,7 @@ export const MinerChipsCard = ({ data }: MinerChipsCardProps) => {
           />
         )
       })
-      .filter((chip): chip is ReactElement => chip !== null)
+      .filter((chip) => chip !== null)
 
   const chips = getMinerChips()
 
