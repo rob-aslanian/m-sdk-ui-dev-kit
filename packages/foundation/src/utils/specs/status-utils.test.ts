@@ -1,5 +1,14 @@
-import { describe, expect, it } from 'vitest'
-import { CONTAINER_STATUS, MINER_POWER_MODE } from '../status-utils'
+import { describe, expect, it, vi } from 'vitest'
+import { CONTAINER_STATUS, MINER_POWER_MODE, SOCKET_STATUSES } from '../status-utils'
+
+vi.mock('../device-utils', () => ({
+  MinerStatuses: {
+    OFFLINE: 'offline',
+    NOT_MINING: 'notMining',
+    MAINTENANCE: 'maintenance',
+    ERROR: 'error',
+  },
+}))
 
 describe('status utils', () => {
   describe('container status', () => {
@@ -31,6 +40,27 @@ describe('status utils', () => {
     it('should have power modes as lowercase strings', () => {
       Object.values(MINER_POWER_MODE).forEach((mode) => {
         expect(mode).toBe(mode.toLowerCase())
+      })
+    })
+  })
+
+  describe('socket statuses', () => {
+    it('should include container statuses', () => {
+      expect(Object.values(CONTAINER_STATUS)).toEqual(
+        expect.arrayContaining(Object.values(CONTAINER_STATUS)),
+      )
+    })
+
+    it('should include miner power modes', () => {
+      expect(Object.values(MINER_POWER_MODE)).toEqual(
+        expect.arrayContaining(Object.values(MINER_POWER_MODE)),
+      )
+    })
+
+    it('should have additional socket status types', () => {
+      const expectedStatuses = ['errorMining', 'disconnected', 'connecting']
+      expectedStatuses.forEach((status) => {
+        expect(Object.values(SOCKET_STATUSES)).toContain(status)
       })
     })
   })

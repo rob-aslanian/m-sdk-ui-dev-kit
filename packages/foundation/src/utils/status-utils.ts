@@ -1,3 +1,5 @@
+import { MinerStatuses } from './device-utils'
+
 export const CONTAINER_STATUS = {
   RUNNING: 'running',
   OFFLINE: 'offline',
@@ -20,3 +22,13 @@ export const THRESHOLD_LEVEL = {
   ALARM_HIGH: 'alarmHigh',
   CRITICAL_HIGH: 'criticalHigh',
 } as const
+
+export const SOCKET_STATUSES = {
+  ...MinerStatuses,
+  ...MINER_POWER_MODE,
+  ERROR_MINING: 'errorMining',
+  MINER_DISCONNECTED: 'disconnected',
+  CONNECTING: 'connecting',
+} as const
+
+export type SocketStatus = (typeof SOCKET_STATUSES)[keyof typeof SOCKET_STATUSES]

@@ -1,4 +1,4 @@
-import { Alert, Button } from '@mining-sdk/core'
+import { CoreAlert as Alert, Button } from '@mining-sdk/core'
 import type { ReactElement } from 'react'
 
 export const AlertExample = (): ReactElement => {
