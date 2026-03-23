@@ -7,6 +7,16 @@
     gap: 8px;
   }
 
+  &__spinner {
+    @include flex_align;
+
+    min-height: 80px;
+
+    &--large {
+      min-height: 120px;
+    }
+  }
+
   &__label {
     white-space: nowrap;
     text-align: center;
@@ -28,8 +38,14 @@
     }
   }
 
-  &__item--large {
-    font-size: 16px;
-    gap: 8px;
+  &__item {
+    flex: 1 1 0%;
+    text-transform: capitalize;
+    padding: 4px 0;
+
+    &--large {
+      font-size: 16px;
+      gap: 8px;
+    }
   }
 }

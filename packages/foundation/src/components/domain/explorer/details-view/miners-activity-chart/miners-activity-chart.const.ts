@@ -50,9 +50,6 @@ export const MINERS_ACTIVITY_LABELS = {
   [SOCKET_STATUSES.MINER_DISCONNECTED]: 'empty',
 }
 
-export const SKELETON_MIN_HEIGHT_LARGE = 120
-export const SKELETON_MIN_HEIGHT_DEFAULT = 80
-
 export const MinersActivityIndicatorColors = {
   [MinerStatuses.OFFLINE]: 'gray',
   [MinerStatuses.ERROR]: 'red',

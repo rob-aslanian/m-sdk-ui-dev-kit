@@ -27,6 +27,7 @@ vi.mock('@mining-sdk/core', () => ({
     </div>
   )),
   formatNumber: vi.fn((value: number) => String(value)),
+  cn: vi.fn((...classes: (string | false | undefined)[]) => classes.filter(Boolean).join(' ')),
 }))
 
 vi.mock('../miners-activity-chart.const', () => {
@@ -125,13 +126,6 @@ describe('MinersActivityChart', () => {
       render(<MinersActivityChart />)
 
       expect(screen.getAllByTestId('indicator')).toHaveLength(3)
-    })
-
-    it('sets --items-count CSS variable on root', () => {
-      const { container } = render(<MinersActivityChart />)
-
-      const root = container.querySelector('.mining-sdk-miners-activity-chart__root')
-      expect(root).toHaveStyle({ '--items-count': '3' })
     })
   })
 

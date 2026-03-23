@@ -1,4 +1,4 @@
-import { CoreAlert, formatNumber, Indicator, SimpleTooltip, Spinner } from '@mining-sdk/core'
+import { cn, CoreAlert, formatNumber, Indicator, SimpleTooltip, Spinner } from '@mining-sdk/core'
 import {
   MINERS_ACTIVITY_ITEMS,
   MINERS_ACTIVITY_LABELS,
@@ -53,15 +53,20 @@ export const MinersActivityChart = ({
   }
 
   if (isLoading) {
-    return <Spinner type="circle" />
+    return (
+      <Spinner
+        type="circle"
+        className={cn(
+          'mining-sdk-miners-activity-chart__spinner',
+          large && 'mining-sdk-miners-activity-chart__spinner--large',
+        )}
+      />
+    )
   }
 
   return (
     <>
-      <div
-        className="mining-sdk-miners-activity-chart__root"
-        style={{ '--items-count': items.length } as React.CSSProperties}
-      >
+      <div className="mining-sdk-miners-activity-chart__root">
         {items.map((value) => {
           const indicatorColor =
             MinersActivityIndicatorColors[value as keyof typeof MinersActivityIndicatorColors]
@@ -72,11 +77,17 @@ export const MinersActivityChart = ({
               color={indicatorColor}
               size={large ? 'lg' : 'sm'}
               vertical
-              className={large ? 'mining-sdk-miners-activity-chart__item--large' : undefined}
+              className={cn(
+                'mining-sdk-miners-activity-chart__item',
+                large && 'mining-sdk-miners-activity-chart__item--large',
+              )}
             >
               {showLabel && (
                 <span
-                  className={`mining-sdk-miners-activity-chart__label${large ? '--large' : ''}`}
+                  className={cn(
+                    'mining-sdk-miners-activity-chart__label',
+                    large && 'mining-sdk-miners-activity-chart__label--large',
+                  )}
                 >
                   {MINERS_ACTIVITY_LABELS[value as keyof typeof MINERS_ACTIVITY_LABELS] || value}
                 </span>
@@ -90,7 +101,7 @@ export const MinersActivityChart = ({
           if (tooltip) {
             return (
               <SimpleTooltip key={value} content={tooltip} side="top">
-                <span>{itemNode}</span>
+                {itemNode}
               </SimpleTooltip>
             )
           }
