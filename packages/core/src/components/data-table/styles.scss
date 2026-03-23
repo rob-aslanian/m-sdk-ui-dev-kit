@@ -12,12 +12,10 @@ $_prefix: mining-sdk-table;
       border-top: none;
 
       .#{$_prefix}__empty-body {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
+        @include flex_column_align_center;
 
-        padding: 30px;
         gap: 10px;
+        padding: 30px;
         color: var(--mining-sdk-table-text-secondary);
 
         &--hidden {
@@ -70,18 +68,15 @@ $_prefix: mining-sdk-table;
     }
 
     .#{$_prefix}__loader-overlay {
+      @include flex_center;
+
       position: absolute;
       top: 0;
       left: 0;
-      height: 100%;
       width: 100%;
-
-      background: var(--mining-sdk-table-loader-overlay-bg);
+      height: 100%;
       backdrop-filter: blur(1px);
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: var(--mining-sdk-table-loader-overlay-bg);
     }
 
     .#{$_prefix}__element {
@@ -99,8 +94,7 @@ $_prefix: mining-sdk-table;
 
         thead tr {
           th {
-            border-right: 1px solid var(--mining-sdk-table-border);
-            border-bottom: 1px solid var(--mining-sdk-table-border);
+            border-inline: 1px solid var(--mining-sdk-table-border);
 
             &:last-child {
               border-right: none;
@@ -152,9 +146,7 @@ $_prefix: mining-sdk-table;
 
           .#{$_prefix}-header {
             &-content {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
+              @include flex_align_between;
 
               svg {
                 color: var(--mining-sdk-color-primary);

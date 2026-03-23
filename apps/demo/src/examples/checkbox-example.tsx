@@ -46,6 +46,11 @@ export const CheckboxExample = (): React.ReactElement => {
             <h3>Size Variants</h3>
             <div className="demo-section__checkboxes">
               <div className="demo-section__checkboxes__item">
+                <Checkbox id="checkbox-small" size="xs" color="primary" defaultChecked />
+                <Label htmlFor="checkbox-small">Extra Small</Label>
+              </div>
+
+              <div className="demo-section__checkboxes__item">
                 <Checkbox id="checkbox-small" size="sm" color="primary" defaultChecked />
                 <Label htmlFor="checkbox-small">Small</Label>
               </div>

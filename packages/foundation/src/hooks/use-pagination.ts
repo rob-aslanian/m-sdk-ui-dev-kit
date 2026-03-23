@@ -52,7 +52,7 @@ export type UsePaginationReturn = {
   /**
    * Reset pagination to initial state
    */
-  reset: () => void
+  reset: VoidFunction
   /**
    * Set total count (useful for hiding next page when data is exhausted)
    */

@@ -6,16 +6,18 @@ import { cn } from '../../utils'
 
 const AccordionRoot = AccordionPrimitive.Root
 
+type TAccordionToggleIconPosition = 'left' | 'right'
+
 type AccordionProps = {
   title: string
   isRow?: boolean
   isOpened?: boolean
   unpadded?: boolean
   noBorder?: boolean
-  solidBackground?: boolean
   showToggleIcon?: boolean
-  toggleIconPosition?: 'left' | 'right'
+  solidBackground?: boolean
   customLabel?: React.ReactNode
+  toggleIconPosition?: TAccordionToggleIconPosition
   onValueChange?: (value: string | string[]) => void
 } & Omit<
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>,
@@ -61,7 +63,7 @@ const AccordionTrigger = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
     timestamp?: string
     showToggleIcon?: boolean
-    toggleIconPosition?: 'left' | 'right'
+    toggleIconPosition?: TAccordionToggleIconPosition
     customLabel?: React.ReactNode
   }
 >(

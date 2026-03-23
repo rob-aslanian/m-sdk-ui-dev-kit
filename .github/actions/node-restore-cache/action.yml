@@ -63,8 +63,6 @@ runs:
     - name: Setup pnpm
       if: steps.pm.outputs.package_manager == 'pnpm'
       uses: pnpm/action-setup@v4
-      with:
-        version: ${{ steps.pm.outputs.pnpm_version }}
 
     - name: Install Dependencies
       if: steps.cache-node-modules.outputs.cache-hit != 'true'

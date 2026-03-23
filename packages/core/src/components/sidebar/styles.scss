@@ -230,11 +230,11 @@ $sidebar-expanded-width: 220px;
 }
 
 .mining-sdk-sidebar__item-label {
+  @include text_ellipsis;
+  
   flex: 1;
   font-family: inherit;
   text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* ─── Group ─────────────────────────────────────────────────────────────── */

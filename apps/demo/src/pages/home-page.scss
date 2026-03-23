@@ -11,9 +11,7 @@
   }
 
   &__header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex_align_between;
     gap: 2rem;
 
     @media (max-width: 768px) {
@@ -23,8 +21,8 @@
   }
 
   &__branding {
-    display: flex;
-    align-items: center;
+    @include flex_align;
+
     gap: 1rem;
   }
 
@@ -34,8 +32,7 @@
   }
 
   &__brand-text {
-    display: flex;
-    flex-direction: column;
+    @include flex_column;
     gap: 0.25rem;
   }
 
@@ -56,8 +53,8 @@
   }
 
   &__header-meta {
-    display: flex;
-    align-items: center;
+    @include flex_align;
+
     gap: 1.5rem;
   }
 
@@ -80,7 +77,7 @@
     font-weight: 600;
     font-size: 0.875rem;
     transition: all 0.2s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--mining-sdk-color-white-2);
 
     &:hover {
       background: rgba(255, 255, 255, 0.15);
@@ -124,8 +121,8 @@
   }
 
   &__stats {
-    display: flex;
-    justify-content: center;
+    @include flex_align;
+
     gap: 4rem;
     padding: 3rem 2rem;
     border-top: 1px solid var(--color-border);
@@ -140,11 +137,12 @@
 }
 
 .category-card {
+  @include flex_column;
+
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
+
   gap: 1rem;
   border: 1px solid var(--color-border);
   background: var(--color-background-elevated);
@@ -187,8 +185,8 @@
 }
 
 .stat-item {
-  display: flex;
-  flex-direction: column;
+  @include flex_column;
+
   gap: 0.5rem;
 
   &__value {

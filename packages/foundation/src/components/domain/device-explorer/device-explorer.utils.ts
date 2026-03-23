@@ -12,7 +12,7 @@ export const getSingleAlarmMessage = (
 
 export const getAlarms = (
   data: DeviceExplorerDeviceData = {} as DeviceExplorerDeviceData,
-  getString?: () => void,
+  getString?: VoidFunction,
   getFormattedDate?: (date: Date) => string,
 ): string | Alert[] => {
   const alarms = data?.last?.alerts as Alert[]

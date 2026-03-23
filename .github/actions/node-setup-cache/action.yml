@@ -78,8 +78,6 @@ runs:
     - name: Setup pnpm
       if: inputs.install-dependencies == 'true' && steps.pm.outputs.package_manager == 'pnpm'
       uses: pnpm/action-setup@v4
-      with:
-        version: ${{ steps.pm.outputs.pnpm_version }}
 
     - name: Install additional system packages
       if: inputs.additional-packages != ''

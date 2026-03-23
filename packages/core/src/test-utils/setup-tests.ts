@@ -4,30 +4,30 @@ import { vi } from 'vitest'
 const _noop = (): void => {}
 
 type MockCanvasRenderingContext2D = {
-  fillRect: () => void
-  clearRect: () => void
-  getImageData: (x: number, y: number, w: number, h: number) => { data: number[] }
-  putImageData: () => void
+  arc: VoidFunction
+  fill: VoidFunction
+  save: VoidFunction
+  rect: VoidFunction
+  clip: VoidFunction
+  scale: VoidFunction
+  moveTo: VoidFunction
+  lineTo: VoidFunction
+  stroke: VoidFunction
+  rotate: VoidFunction
+  restore: VoidFunction
+  fillRect: VoidFunction
+  fillText: VoidFunction
+  clearRect: VoidFunction
+  drawImage: VoidFunction
+  beginPath: VoidFunction
+  closePath: VoidFunction
+  translate: VoidFunction
+  transform: VoidFunction
+  setTransform: VoidFunction
+  putImageData: VoidFunction
   createImageData: () => ImageData[]
-  setTransform: () => void
-  drawImage: () => void
-  save: () => void
-  fillText: () => void
-  restore: () => void
-  beginPath: () => void
-  moveTo: () => void
-  lineTo: () => void
-  closePath: () => void
-  stroke: () => void
-  translate: () => void
-  scale: () => void
-  rotate: () => void
-  arc: () => void
-  fill: () => void
   measureText: (text: string) => { width: number; height: number }
-  transform: () => void
-  rect: () => void
-  clip: () => void
+  getImageData: (x: number, y: number, w: number, h: number) => { data: number[] }
   createLinearGradient: (x0: number, y0: number, x1: number, y1: number) => CanvasGradient
 }
 

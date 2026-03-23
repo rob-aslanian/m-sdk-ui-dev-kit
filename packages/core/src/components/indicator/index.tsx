@@ -41,7 +41,7 @@ export type IndicatorProps = {
   /**
    * Click handler
    */
-  onClick?: () => void
+  onClick?: VoidFunction
 } & React.ComponentPropsWithoutRef<'div'>
 
 /**

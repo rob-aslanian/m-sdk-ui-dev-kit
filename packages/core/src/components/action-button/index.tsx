@@ -5,6 +5,8 @@ import { cn } from '../../utils'
 import { Button } from '../button'
 import { Popover, PopoverContent, PopoverTrigger } from '../popover'
 
+type TActionButtonVariant = 'primary' | 'danger' | 'secondary'
+
 type ActionButtonConfirmation = {
   title: string
   cancelLabel?: string
@@ -20,8 +22,8 @@ type ActionButtonProps = {
   loading?: boolean
   disabled?: boolean
   className?: string
+  variant?: TActionButtonVariant
   confirmation: ActionButtonConfirmation
-  variant?: 'primary' | 'danger' | 'secondary'
 }
 
 /**

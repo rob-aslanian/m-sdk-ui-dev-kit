@@ -49,16 +49,14 @@
   }
 
   &__legend-label {
-    font-size: 12px;
-    font-family: 'JetBrains Mono', sans-serif;
-    font-weight: 500;
-    color: hsl(210 40% 98% / 0.85);
-    white-space: nowrap;
-    text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-width: 0;
+    @include text_ellipsis;
+    font-family: var(--font-mono);
     flex: 1;
+    min-width: 0;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: left;
+    color: hsl(210 40% 98% / 0.85);
   }
 
   &__legend-stats {
@@ -70,28 +68,28 @@
 
   &__legend-pct {
     font-size: 12px;
-    font-family: 'JetBrains Mono', sans-serif;
     font-weight: 600;
-    color: hsl(210 40% 98% / 0.6);
     white-space: nowrap;
+    font-family: var(--font-mono);
+    color: hsl(210 40% 98% / 0.6);
   }
 
   &__legend-count {
     font-size: 12px;
-    font-family: 'JetBrains Mono', sans-serif;
     font-weight: 700;
-    color: hsl(210 40% 98% / 0.9);
     white-space: nowrap;
+    font-family: var(--font-mono);
+    color: hsl(210 40% 98% / 0.9);
   }
 
   // ── Chart ─────────────────────────────────────────────────────────────────
   &__chart {
     @include flex_center;
 
-    position: relative;
     width: 100%;
-    align-self: center;
     flex-shrink: 0;
+    position: relative;
+    align-self: center;
     
     canvas {
       max-width: 100% !important;

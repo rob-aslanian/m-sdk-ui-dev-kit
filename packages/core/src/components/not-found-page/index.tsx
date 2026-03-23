@@ -8,7 +8,7 @@ export type NotFoundPageProps = {
   /**
    * Callback fired when the "Go Home" button is clicked
    */
-  onGoHome?: () => void
+  onGoHome?: VoidFunction
   /**
    * Page title
    * @default "404"

@@ -11,19 +11,19 @@ export type UseFormResetOptions<TFieldValues extends FieldValues = FieldValues> 
   /**
    * Optional callback called before reset
    */
-  onBeforeReset?: () => void
+  onBeforeReset?: VoidFunction
 
   /**
    * Optional callback called after reset
    */
-  onAfterReset?: () => void
+  onAfterReset?: VoidFunction
 }
 
 export type UseFormResetReturn = {
   /**
    * Reset the form to default values
    */
-  resetForm: () => void
+  resetForm: VoidFunction
 
   /**
    * Whether the form has been modified from its default values

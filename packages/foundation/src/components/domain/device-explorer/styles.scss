@@ -54,6 +54,7 @@
 
     &__cell-wrapper {
       @include flex_align;
+
       gap: 6px;
     }
 
@@ -62,7 +63,8 @@
       &--type-hash-rate,
       &--type-status,
       &--type-power-mode {
-        @include flex-center;
+        @include flex_center;
+
         gap: 6px;
       }
 
@@ -82,12 +84,13 @@
         }
 
         &__icon {
-          @include flex-center;
+          @include flex_center;
         }
       }
 
       &--type-led {
         @include flex_column_center;
+        
         color: var(--mining-sdk-color-white);
         font-size: 9px;
         font-weight: 500;

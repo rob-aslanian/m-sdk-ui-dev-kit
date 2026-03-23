@@ -4,18 +4,18 @@ import { cn } from '../../utils'
 export type BreadcrumbItem = {
   label: string
   href?: string
-  onClick?: () => void
+  onClick?: VoidFunction
 }
 
 export type BreadcrumbsProps = {
   items: BreadcrumbItem[]
-  separator?: React.ReactNode
   showBack?: boolean
   backLabel?: string
-  onBackClick?: () => void
   className?: string
   itemClassName?: string
   backClassName?: string
+  onBackClick?: VoidFunction
+  separator?: React.ReactNode
 }
 
 const renderBreadcrumbItem = (

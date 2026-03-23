@@ -3,31 +3,30 @@ import { vi } from 'vitest'
 const _noop = (): void => {}
 // Mock HTMLCanvasElement for chart libraries
 type MockCanvasRenderingContext2D = {
-  fillRect: () => void
-  clearRect: () => void
-  getImageData: (x: number, y: number, w: number, h: number) => { data: number[] }
-  putImageData: () => void
+  arc: VoidFunction
+  save: VoidFunction
+  fill: VoidFunction
+  rect: VoidFunction
+  clip: VoidFunction
+  scale: VoidFunction
+  lineTo: VoidFunction
+  moveTo: VoidFunction
+  rotate: VoidFunction
+  stroke: VoidFunction
+  restore: VoidFunction
+  fillText: VoidFunction
+  fillRect: VoidFunction
+  beginPath: VoidFunction
+  translate: VoidFunction
+  closePath: VoidFunction
+  transform: VoidFunction
+  drawImage: VoidFunction
+  clearRect: VoidFunction
+  setTransform: VoidFunction
+  putImageData: VoidFunction
   createImageData: () => ImageData[]
-  setTransform: () => void
-  drawImage: () => void
-  save: () => void
-  fillText: () => void
-  restore: () => void
-  beginPath: () => void
-  moveTo: () => void
-  lineTo: () => void
-  closePath: () => void
-  stroke: () => void
-  translate: () => void
-  scale: () => void
-  rotate: () => void
-  arc: () => void
-  fill: () => void
-
   measureText: (text: string) => { width: number; height: number }
-  transform: () => void
-  rect: () => void
-  clip: () => void
+  getImageData: (x: number, y: number, w: number, h: number) => { data: number[] }
 }
 
 globalThis.HTMLCanvasElement.prototype.getContext = (() =>

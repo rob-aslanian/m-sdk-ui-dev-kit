@@ -15,12 +15,12 @@ const TOAST_DURATION = 3_000
 
 type ToastItem = {
   id: string
-  variant: ToastVariant
   title: string
-  description?: string
   duration: number
+  description?: string
+  variant: ToastVariant
+  onClose: VoidFunction
   position: ToastPosition
-  onClose: () => void
 }
 
 // Global toast container management

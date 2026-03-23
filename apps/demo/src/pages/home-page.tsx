@@ -5,10 +5,10 @@ import './home-page.scss'
 
 type CategoryCardProps = {
   title: string
-  description: string
-  componentCount: number
   path: string
-  onClick: () => void
+  description: string
+  onClick: VoidFunction
+  componentCount: number
 }
 
 const CategoryCard = ({

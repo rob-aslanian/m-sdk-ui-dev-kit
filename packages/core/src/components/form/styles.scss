@@ -19,7 +19,7 @@
 
 .mining-sdk-form-label {
   &--error {
-    color: rgb(var(--mining-sdk-color-error, #ef4444));
+    color: rgb(var(--mining-sdk-color-error));
   }
 }
 
@@ -28,7 +28,7 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.25rem;
-  color: var(--mining-sdk-input-placeholder-color, #999999);
+  color: var(--mining-sdk-input-placeholder-color);
   word-wrap: break-word;
   overflow-wrap: break-word;
   max-width: 100%;
@@ -39,7 +39,7 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.25rem;
-  color: rgb(var(--mining-sdk-color-error, #ef4444));
+  color: rgb(var(--mining-sdk-color-error));
   word-wrap: break-word;
   word-break: break-word;
   overflow-wrap: break-word;

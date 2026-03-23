@@ -17,11 +17,11 @@ export type TagInputOption = string | { value: string; label: string; disabled?:
 
 export type TagInputRef = {
   /** Clear the input value programmatically */
-  clearInputValue: () => void
+  clearInputValue: VoidFunction
   /** Focus the input */
-  focus: () => void
+  focus: VoidFunction
   /** Blur the input */
-  blur: () => void
+  blur: VoidFunction
   /** Get current input value */
   getInputValue: () => string
 }

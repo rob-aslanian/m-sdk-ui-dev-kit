@@ -18,10 +18,10 @@
   font-family: var(--font-mono);
 
   /* Colors */
-  background-color: var(--mining-sdk-popover-bg, #000000);
-  color: var(--mining-sdk-popover-text, var(--mining-sdk-color-white, #ffffff));
+  background-color: var(--mining-sdk-popover-bg);
+  color: var(--mining-sdk-popover-text, var(--mining-sdk-color-white));
   border: 1px solid
-    var(--mining-sdk-popover-border, var(--mining-sdk-color-white-transparent, #ffffff1a));
+    var(--mining-sdk-popover-border, var(--mining-sdk-color-white-transparent));
 
   /* Effects */
   box-shadow: var(--mining-sdk-shadow-md);
@@ -67,8 +67,8 @@
 
 /* Arrow styling */
 .mining-sdk-popover__arrow {
-  fill: var(--mining-sdk-popover-bg, #000000);
-  filter: drop-shadow(0 0 1px var(--mining-sdk-popover-border, #ffffff1a));
+  fill: var(--mining-sdk-popover-bg);
+  filter: drop-shadow(0 0 1px var(--mining-sdk-popover-border));
 }
 
 /* Close button */
@@ -84,7 +84,7 @@
   border-radius: 4px;
   background: transparent;
   border: none;
-  color: var(--mining-sdk-popover-text, var(--mining-sdk-color-white, #ffffff));
+  color: var(--mining-sdk-popover-text, var(--mining-sdk-color-white));
   opacity: 0.7;
   cursor: pointer;
   transition:
@@ -93,11 +93,11 @@
 
   &:hover {
     opacity: 1;
-    background-color: var(--mining-sdk-color-white-transparent, #ffffff1a);
+    background-color: var(--mining-sdk-color-white-transparent);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--mining-sdk-color-primary, #f7931a);
+    outline: 2px solid var(--mining-sdk-color-primary);
     outline-offset: 2px;
   }
 

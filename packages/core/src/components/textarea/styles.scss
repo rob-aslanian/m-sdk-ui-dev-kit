@@ -15,7 +15,7 @@
 }
 
 .mining-sdk-textarea__label {
-  color: var(--mining-sdk-color-white, #ffffff);
+  color: var(--mining-sdk-color-white);
   font-size: var(--mining-sdk-font-size, 14px);
   line-height: var(--mining-sdk-line-height, 22px);
 }
@@ -32,12 +32,12 @@
 
   &--error {
     .mining-sdk-textarea {
-      border-color: rgb(var(--mining-sdk-color-error, #ef4444));
+      border-color: rgb(var(--mining-sdk-color-error));
     }
 
     .mining-sdk-textarea:hover:not(:disabled):not(:focus),
     .mining-sdk-textarea:focus {
-      border-color: rgb(var(--mining-sdk-color-error, #ef4444));
+      border-color: rgb(var(--mining-sdk-color-error));
     }
   }
 }
@@ -45,7 +45,7 @@
 .mining-sdk-textarea__error {
   font-size: var(--mining-sdk-font-size, 14px);
   line-height: var(--mining-sdk-line-height, 22px);
-  color: rgb(var(--mining-sdk-color-error, #ef4444));
+  color: rgb(var(--mining-sdk-color-error));
 }
 
 .mining-sdk-textarea {
@@ -55,8 +55,8 @@
   font-size: var(--mining-sdk-font-size, 14px);
   line-height: var(--mining-sdk-line-height, 22px);
   font-family: inherit;
-  color: var(--mining-sdk-color-white, #ffffff);
-  background: var(--mining-sdk-input-bg, #363636);
+  color: var(--mining-sdk-color-white);
+  background: var(--mining-sdk-input-bg);
   border: 1px solid transparent;
   border-radius: 0;
   outline: none;
@@ -66,15 +66,15 @@
     background-color 0.2s;
 
   &::placeholder {
-    color: var(--mining-sdk-input-placeholder-color, #999999);
+    color: var(--mining-sdk-input-placeholder-color);
   }
 
   &:hover:not(:disabled):not(:focus) {
-    border-color: var(--mining-sdk-input-border-hover, #777777);
+    border-color: var(--mining-sdk-input-border-hover);
   }
 
   &:focus {
-    border-color: var(--mining-sdk-color-primary, #f7931a);
+    border-color: var(--mining-sdk-color-primary);
   }
 
   &:disabled {

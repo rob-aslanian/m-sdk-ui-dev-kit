@@ -168,7 +168,5 @@
 }
 
 .mining-sdk-typography--truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  @include text_ellipsis;
 }

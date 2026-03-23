@@ -173,6 +173,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       if (dot || status) return true
       if (text) return true
       if (count === 0) return showZero
+
       return count > 0
     }, [dot, status, text, count, showZero])
 
@@ -181,6 +182,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       if (text) return text
       if (dot || status) return null
       if (count > overflowCount) return `${overflowCount}+`
+
       return count
     }, [text, dot, status, count, overflowCount])
 
