@@ -163,6 +163,7 @@ export const COMPONENT_NAV: SidebarMenuItem[] = [
           { id: 'secondary-stat-card', label: 'Secondary Stat Card' },
           { id: 'stats-group-card', label: 'Stats group card' },
           { id: 'miner-info-card', label: 'Miner info card' },
+          { id: 'miner-chips-card', label: 'Miner chips card' },
         ],
       },
     ],
